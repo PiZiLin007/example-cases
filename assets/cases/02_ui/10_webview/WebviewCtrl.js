@@ -8,11 +8,11 @@ cc.Class({
     },
 
     onWebFinishLoad: function (sender, event) {
-        var loadStatus = "";
+        let loadStatus = '';
         if (event === cc.WebView.EventType.LOADED) {
-            loadStatus = " is loaded!";
+            loadStatus = ' is loaded!';
         } else if (event === cc.WebView.EventType.LOADING) {
-            loadStatus = " is loading!";
+            loadStatus = ' is loading!';
         } else if (event === cc.WebView.EventType.ERROR) {
             loadStatus = ' load error!';
         }

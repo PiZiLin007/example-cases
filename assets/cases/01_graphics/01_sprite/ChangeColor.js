@@ -18,11 +18,11 @@ cc.Class({
         }
     },
 
-    ctor () {
+    ctor() {
         this._colorChanged = false;
     },
-    
-    changeColor () {
+
+    changeColor() {
         this.node.color = this._colorChanged ? cc.Color.WHITE : cc.Color.RED;
         this._colorChanged = !this._colorChanged;
     }

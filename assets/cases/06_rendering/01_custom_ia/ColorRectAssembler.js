@@ -1,6 +1,6 @@
 module.exports = {
     useModel: false,
-    updateRenderData (comp) {
+    updateRenderData(comp) {
         if (!comp._renderData) {
             let IARenderData = cc.renderer.renderEngine.IARenderData;
             comp._renderData = new IARenderData();
@@ -9,7 +9,7 @@ module.exports = {
         }
     },
 
-    renderIA (comp, renderer) {
+    renderIA(comp, renderer) {
         renderer._flushIA(comp._renderData);
     }
-}
+};

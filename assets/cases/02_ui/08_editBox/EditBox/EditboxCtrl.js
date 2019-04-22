@@ -41,47 +41,47 @@ cc.Class({
     },
 
     singleLineEditBoxDidBeginEditing: function(sender) {
-        cc.log(sender.node.name + " single line editBoxDidBeginEditing");
+        cc.log(sender.node.name + ' single line editBoxDidBeginEditing');
     },
 
     singleLineEditBoxDidChanged: function(text, sender) {
-        cc.log(sender.node.name + " single line editBoxDidChanged: " + text);
+        cc.log(sender.node.name + ' single line editBoxDidChanged: ' + text);
     },
 
     singleLineEditBoxDidEndEditing: function(sender) {
-        cc.log(sender.node.name + " single line editBoxDidEndEditing: " + this.singleLineText.string);
+        cc.log(sender.node.name + ' single line editBoxDidEndEditing: ' + this.singleLineText.string);
     },
 
     singleLinePasswordEditBoxDidBeginEditing: function(sender) {
-        cc.log(sender.node.name + " single line password editBoxDidBeginEditing");
+        cc.log(sender.node.name + ' single line password editBoxDidBeginEditing');
     },
 
     singleLinePasswordEditBoxDidChanged: function(text, sender) {
-        cc.log(sender.node.name + " single line password editBoxDidChanged: " + text);
+        cc.log(sender.node.name + ' single line password editBoxDidChanged: ' + text);
     },
 
     singleLinePasswordEditBoxDidEndEditing: function(sender) {
-        cc.log(sender.node.name + " single line password editBoxDidEndEditing: " + this.singleLinePassword.string);
+        cc.log(sender.node.name + ' single line password editBoxDidEndEditing: ' + this.singleLinePassword.string);
     },
 
     multiLinePasswordEditBoxDidBeginEditing: function(sender) {
-        cc.log(sender.node.name + " multi line editBoxDidBeginEditing");
+        cc.log(sender.node.name + ' multi line editBoxDidBeginEditing');
     },
 
     multiLinePasswordEditBoxDidChanged: function(text, sender) {
-        cc.log(sender.node.name + " multi line editBoxDidChanged: " + text);
+        cc.log(sender.node.name + ' multi line editBoxDidChanged: ' + text);
     },
 
     multiLinePasswordEditBoxDidEndEditing: function(sender) {
-        cc.log(sender.node.name + " multi line editBoxDidEndEditing: " + this.multiLineText.string);
+        cc.log(sender.node.name + ' multi line editBoxDidEndEditing: ' + this.multiLineText.string);
     },
     buttonClicked: function() {
-        cc.log("button Clicked!");
-        if (this.singleLineText.string !== "") {
-            this.showEditorBoxLabel.string = i18n.t("cases/02_ui/07_editBox/editbox.js.1") + this.singleLineText.string;
+        cc.log('button Clicked!');
+        if (this.singleLineText.string !== '') {
+            this.showEditorBoxLabel.string = i18n.t('cases/02_ui/07_editBox/editbox.js.1') + this.singleLineText.string;
         }
         else {
-            this.showEditorBoxLabel.string = "";
+            this.showEditorBoxLabel.string = '';
         }
     }
 

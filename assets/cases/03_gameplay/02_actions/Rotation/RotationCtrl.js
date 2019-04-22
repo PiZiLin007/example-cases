@@ -7,12 +7,12 @@ cc.Class({
     },
 
     onToClick: function () {
-        var rotationTo = cc.rotateTo(1, 0, 100);
+        let rotationTo = cc.rotateTo(1, 0, 100);
         this.rotationToNode.runAction(rotationTo);
     },
 
     onReverseToClick: function () {
-        var rotationTo = cc.rotateTo(1, 100, 0);
+        let rotationTo = cc.rotateTo(1, 100, 0);
         this.rotationToNode.runAction(rotationTo);
     },
 
@@ -22,12 +22,12 @@ cc.Class({
     },
 
     onByClick: function () {
-        var rotateBy = cc.rotateBy(1, 0, 100);
+        let rotateBy = cc.rotateBy(1, 0, 100);
         this.rotateByNode.runAction(rotateBy);
     },
 
     onReverseByClick: function () {
-        var rotateBy = cc.rotateBy(1, 100, 100);
+        let rotateBy = cc.rotateBy(1, 100, 100);
         this.rotateByNode.runAction(rotateBy);
     },
 

@@ -13,11 +13,11 @@ cc.Class({
         }
     },
 
-    _updateLabel () {
+    _updateLabel() {
         this.label.string = 'Instance: ' + this.audioPool.length + ' / ' + this.maxNum;
     },
 
-    onLoad () {
+    onLoad() {
         this.maxNum = cc.audioEngine.getMaxAudioInstance();
         this.audioPool = [];
         this._updateLabel();
@@ -30,21 +30,21 @@ cc.Class({
         });
     },
 
-    onDestroy () {
+    onDestroy() {
         cc.audioEngine.stopAll();
     },
 
-    removeAudio (id) {
-        var idx = this.audioPool.indexOf(id);
+    removeAudio(id) {
+        let idx = this.audioPool.indexOf(id);
         if (idx > -1) {
             this.audioPool.splice(idx, 1);
         }
         this._updateLabel();
     },
 
-    play () {
+    play() {
         if (!this.audio || this.audioPool.length === this.maxNum) return;
-        var id = cc.audioEngine.play(this.audio, false, 1);
+        let id = cc.audioEngine.play(this.audio, false, 1);
         this.audioPool.push(id);
         this._updateLabel();
 
@@ -52,17 +52,17 @@ cc.Class({
         cc.audioEngine.setFinishCallback(id, this.removeAudio.bind(this, id));
     },
 
-    stopAll () {
+    stopAll() {
         cc.audioEngine.stopAll();
         this.audioPool = [];
         this._updateLabel();
     },
 
-    pauseAll () {
+    pauseAll() {
         cc.audioEngine.pauseAll();
     },
 
-    resumeAll () {
+    resumeAll() {
         cc.audioEngine.resumeAll();
     },
 });

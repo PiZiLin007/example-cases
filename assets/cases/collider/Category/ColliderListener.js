@@ -6,21 +6,21 @@ cc.Class({
         cc.director.getCollisionManager().enabled = true;
         cc.director.getCollisionManager().enabledDebugDraw = true;
         // cc.director.getCollisionManager().enabledDrawBoundingBox = true;
-        
+
         this.touchingNumber = 0;
     },
-    
+
     onCollisionEnter: function (other) {
         this.node.color = cc.Color.RED;
-        this.touchingNumber ++;
+        this.touchingNumber++;
     },
-    
+
     onCollisionStay: function (other) {
         // console.log('on collision stay');
     },
-    
+
     onCollisionExit: function () {
-        this.touchingNumber --;
+        this.touchingNumber--;
         if (this.touchingNumber === 0) {
             this.node.color = cc.Color.WHITE;
         }

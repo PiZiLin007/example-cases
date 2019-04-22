@@ -8,26 +8,26 @@ cc.Class({
         slider_v: cc.Slider
     },
 
-    onLoad () {
+    onLoad() {
         this.slider_v.progress = 0.5;
         this.slider_h.progress = 0.5;
         this._updateImageOpacity(this.slider_v.progress);
         this._updateMusicVolume(this.slider_h.progress);
     },
 
-    _updateImageOpacity (progress) {
+    _updateImageOpacity(progress) {
         this.image.opacity = progress * 255;
     },
 
-    _updateMusicVolume (progress) {
+    _updateMusicVolume(progress) {
         this.music.volume = progress;
     },
 
-    onSliderVEvent (sender, eventType) {
+    onSliderVEvent(sender, eventType) {
         this._updateImageOpacity(sender.progress);
     },
 
-    onSliderHEvent (sender, eventType) {
+    onSliderHEvent(sender, eventType) {
         this._updateMusicVolume(sender.progress);
     }
 });

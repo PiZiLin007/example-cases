@@ -18,10 +18,10 @@ cc.Class({
     },
 
     createMoster: function () {
-        var monster = cc.instantiate(this.monsterTemp);
-        var Monster = require("Monster");
-        var monsterComp = monster.getComponent(Monster);
-        var InitData = require("InitData");
+        let monster = cc.instantiate(this.monsterTemp);
+        let Monster = require('Monster');
+        let monsterComp = monster.getComponent(Monster);
+        let InitData = require('InitData');
         monsterComp.initInfo(InitData.monsterInfo);
         monster.parent = this.node;
         monster.setPosition(cc.v2(0, 0));

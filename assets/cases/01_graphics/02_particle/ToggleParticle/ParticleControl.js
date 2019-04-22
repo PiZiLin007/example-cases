@@ -6,7 +6,7 @@ cc.Class({
     },
 
     toggleParticlePlay: function() {
-        var myParticle = this.particle.getComponent(cc.ParticleSystem);
+        let myParticle = this.particle.getComponent(cc.ParticleSystem);
         if (myParticle.particleCount > 0) { // check if particle has fully plaed
             myParticle.stopSystem(); // stop particle system
         } else {

@@ -19,7 +19,7 @@ cc.Class({
 
     // onLoad () {},
 
-    run () {
+    run() {
         this.schedule(this.task1, 1, 0, 1);
     },
 

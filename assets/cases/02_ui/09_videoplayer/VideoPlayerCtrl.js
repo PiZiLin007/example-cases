@@ -1,7 +1,7 @@
 const i18n = require('i18n');
 const TipsManager = require('TipsManager');
 
-function getStatus (event) {
+function getStatus(event) {
     switch (event) {
         case cc.VideoPlayer.EventType.PLAYING:
             return 'PLAYING';
@@ -20,7 +20,7 @@ function getStatus (event) {
         default:
             return 'NONE';
     }
-};
+}
 
 cc.Class({
     extends: cc.Component,
@@ -36,7 +36,7 @@ cc.Class({
         visibility: cc.Label,
     },
 
-    start () {
+    start() {
         TipsManager.init();
         this.controlButtons.active = false;
         this.keep_Ratio_Switch.active = !cc.sys.isBrowser;
@@ -45,7 +45,7 @@ cc.Class({
         });
     },
 
-    onVideoPlayerEvent (sender, event) {
+    onVideoPlayerEvent(sender, event) {
         this.statusLabel.string = 'Status: ' + getStatus(event);
         if (event === cc.VideoPlayer.EventType.CLICKED) {
             if (this.videoPlayer.isPlaying()) {
@@ -63,7 +63,7 @@ cc.Class({
         }
     },
 
-    toggleFullscreen () {
+    toggleFullscreen() {
         if (
             cc.sys.isBrowser &&
             cc.sys.browserType === cc.sys.BROWSER_TYPE_MOBILE_QQ &&
@@ -76,41 +76,41 @@ cc.Class({
         this.videoPlayer.isFullscreen = true;
     },
 
-    toggleVisibility (event) {
+    toggleVisibility(event) {
         this.videoPlayer.node.active = !this.videoPlayer.node.active;
         this.playVideoArea.active = this.videoPlayer.node.active;
         this.visibility.string = 'Visibility: ' + this.videoPlayer.node.active;
     },
 
-    keepRatioSwitch () {
+    keepRatioSwitch() {
         this.videoPlayer.keepAspectRatio = !this.videoPlayer.keepAspectRatio;
     },
 
-    switchOnlineVideo () {
+    switchOnlineVideo() {
         this.videoPlayer.remoteURL = 'http://www.w3school.com.cn/i/movie.mp4';
         this.videoPlayer.resourceType = cc.VideoPlayer.ResourceType.REMOTE;
         this.playVideoArea.active = true;
     },
 
-    switchLoaclVide () {
+    switchLoaclVide() {
         this.videoPlayer.resourceType = cc.VideoPlayer.ResourceType.LOCAL;
         this.playVideoArea.active = true;
     },
 
-    play () {
+    play() {
         this.videoPlayer.play();
         this.playVideoArea.active = false;
     },
 
-    pause () {
+    pause() {
         this.videoPlayer.pause();
     },
 
-    stop () {
+    stop() {
         this.videoPlayer.stop();
     },
 
-    update () {
+    update() {
         if (this.currentTime && this.videoPlayer.currentTime >= 0) {
             this.currentTime.string = this.videoPlayer.currentTime.toFixed(2) + ' / ' + this.videoPlayer.getDuration().toFixed(2);
         }

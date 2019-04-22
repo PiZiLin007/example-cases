@@ -15,9 +15,9 @@ const SceneList = cc.Class({
     },
 
     createItem: function (x, y, name, url) {
-        var item = cc.instantiate(this.itemPrefab);
-        var itemComp = item.getComponent('ListItem');
-        var label = itemComp.label;
+        let item = cc.instantiate(this.itemPrefab);
+        let itemComp = item.getComponent('ListItem');
+        let label = itemComp.label;
         label.string = name;
 
         if (url) {
@@ -31,7 +31,7 @@ const SceneList = cc.Class({
         return item;
     },
 
-    init (menu) {
+    init(menu) {
         this.menu = menu;
         this.sceneList = [];
         this.itemList = [];
@@ -43,9 +43,9 @@ const SceneList = cc.Class({
     },
 
     // use this for initialization
-    initList () {
-        var scenes = cc.game._sceneInfos;
-        var dict = {};
+    initList() {
+        let scenes = cc.game._sceneInfos;
+        let dict = {};
 
         if (scenes) {
             for (let i = 0; i < scenes.length; ++i) {
@@ -91,7 +91,7 @@ const SceneList = cc.Class({
             item.init(this.menu);
             this.node.addChild(item.node);
             y -= 50;
-            item.updateItem (i, y, itemInfo.name, itemInfo.url);
+            item.updateItem(i, y, itemInfo.name, itemInfo.url);
             this.itemList.push(item);
         }
 
@@ -107,7 +107,7 @@ const SceneList = cc.Class({
         return viewPos;
     },
 
-    update (dt) {
+    update(dt) {
         this.updateTimer += dt;
         if (this.updateTimer < this.updateInterval) {
             return; // we don't need to do the math every frame
@@ -127,7 +127,7 @@ const SceneList = cc.Class({
                 if (viewPos.y < -buffer && itemNode.y + offset < 0) {
                     let newIdx = item.index - curItemCount;
                     let newInfo = this.sceneList[newIdx];
-                    item.updateItem(newIdx, itemNode.y + offset, newInfo.name, newInfo.url );
+                    item.updateItem(newIdx, itemNode.y + offset, newInfo.name, newInfo.url);
                 }
             } else {
                 // if away from buffer zone and not reaching bottom of content

@@ -17,11 +17,10 @@ var TouchDragger = cc.Class({
         }, this.node);
         this.node.on(cc.Node.EventType.TOUCH_MOVE, function (event) {
             this.opacity = 255;
-            var delta = event.touch.getDelta();
+            let delta = event.touch.getDelta();
             this.x += delta.x;
             this.y += delta.y;
-            if (this.getComponent(TouchDragger).propagate)
-                event.stopPropagation();
+            if (this.getComponent(TouchDragger).propagate) event.stopPropagation();
         }, this.node);
         this.node.on(cc.Node.EventType.TOUCH_END, function () {
             this.opacity = 160;

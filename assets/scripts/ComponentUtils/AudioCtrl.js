@@ -10,40 +10,40 @@ cc.Class({
         _audioID: null,
     },
 
-    setAudioTask (audio) {
+    setAudioTask(audio) {
         this._audioTask = audio;
     },
 
-    playAudio () {
+    playAudio() {
         // return current audio object
         this._audioID = cc.audioEngine.play(this._audioTask, false);
     },
 
-    stopAudio () {
+    stopAudio() {
         cc.audioEngine.stop(this._audioID);
     },
 
-    pauseAudio () {
+    pauseAudio() {
         cc.audioEngine.pause(this._audioID);
     },
 
-    resumeAudio () {
+    resumeAudio() {
         cc.audioEngine.resume(this._audioID);
     },
 
-    stopAllAudio () {
+    stopAllAudio() {
         cc.audioEngine.stopAll();
     },
 
-    pauseAllAudio () {
+    pauseAllAudio() {
         cc.audioEngine.pauseAll();
     },
 
-    resumeAllAudio () {
+    resumeAllAudio() {
         cc.audioEngine.resumeAll();
     },
 
-    currentTime () {
+    currentTime() {
         if (!this._audioTask || this._audioID === null) {
             return;
         }

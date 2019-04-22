@@ -8,7 +8,7 @@ cc.Class({
         }
     },
 
-    dynamicCreate () {
+    dynamicCreate() {
         if (this.dragonBone.dragonAtlasAsset) {
             return;
         }
@@ -19,7 +19,7 @@ cc.Class({
         });
     },
 
-    onComplete (err, res) {
+    onComplete(err, res) {
         if (err) cc.error(err);
         this.dragonBone.dragonAtlasAsset = res;
         this.dragonBone.armatureName = 'armatureName';

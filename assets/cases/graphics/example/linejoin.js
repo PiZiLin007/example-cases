@@ -8,13 +8,13 @@ cc.Class({
     onLoad: function () {
         this.graphics = this.getComponent(cc.Graphics);
         this.graphics.lineWidth = 20;
-        
+
         this.time = 0;
         this.radius = 100;
 
         this.draw();
     },
-    
+
     // called every frame, uncomment this function to activate update callback
     update: function (dt) {
         this.time += dt * 0.5;

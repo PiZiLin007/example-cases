@@ -79,41 +79,41 @@ cc.Class({
         }
         // update lastContentPosY
         this.lastContentPosY = this.scrollView.content.y;
-        this.lblTotalItems.textKey = "Total Items: " + this.totalCount;
+        this.lblTotalItems.textKey = 'Total Items: ' + this.totalCount;
     },
 
     scrollEvent: function(sender, event) {
-        switch(event) {
-            case 0: 
-               this.lblScrollEvent.string = "Scroll to Top"; 
-               break;
-            case 1: 
-               this.lblScrollEvent.string = "Scroll to Bottom"; 
-               break;
-            case 2: 
-               this.lblScrollEvent.string = "Scroll to Left"; 
-               break;
-            case 3: 
-               this.lblScrollEvent.string = "Scroll to Right"; 
-               break;
-            case 4: 
-               this.lblScrollEvent.string = "Scrolling"; 
-               break;
-            case 5: 
-               this.lblScrollEvent.string = "Bounce Top"; 
-               break;
-            case 6: 
-               this.lblScrollEvent.string = "Bounce bottom"; 
-               break;
-            case 7: 
-               this.lblScrollEvent.string = "Bounce left"; 
-               break;
-            case 8: 
-               this.lblScrollEvent.string = "Bounce right"; 
-               break;
-            case 9: 
-               this.lblScrollEvent.string = "Auto scroll ended"; 
-               break;
+        switch (event) {
+            case 0:
+                this.lblScrollEvent.string = 'Scroll to Top';
+                break;
+            case 1:
+                this.lblScrollEvent.string = 'Scroll to Bottom';
+                break;
+            case 2:
+                this.lblScrollEvent.string = 'Scroll to Left';
+                break;
+            case 3:
+                this.lblScrollEvent.string = 'Scroll to Right';
+                break;
+            case 4:
+                this.lblScrollEvent.string = 'Scrolling';
+                break;
+            case 5:
+                this.lblScrollEvent.string = 'Bounce Top';
+                break;
+            case 6:
+                this.lblScrollEvent.string = 'Bounce bottom';
+                break;
+            case 7:
+                this.lblScrollEvent.string = 'Bounce left';
+                break;
+            case 8:
+                this.lblScrollEvent.string = 'Bounce right';
+                break;
+            case 9:
+                this.lblScrollEvent.string = 'Auto scroll ended';
+                break;
         }
     },
 
@@ -134,7 +134,7 @@ cc.Class({
         this.moveBottomItemToTop();
     },
 
-    moveBottomItemToTop () {
+    moveBottomItemToTop() {
         let offset = (this.itemTemplate.height + this.spacing) * this.items.length;
         let length = this.items.length;
         let item = this.getItemAtBottom();
@@ -148,7 +148,7 @@ cc.Class({
         }
     },
 
-    getItemAtBottom () {
+    getItemAtBottom() {
         let item = this.items[0];
         for (let i = 1; i < this.items.length; ++i) {
             if (item.y > this.items[i].y) {

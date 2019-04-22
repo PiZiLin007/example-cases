@@ -14,19 +14,19 @@ cc.Class({
         btn: cc.Button
     },
 
-    init (menu) {
+    init(menu) {
         this.index = -1;
         this.__name = '';
         this.menu = menu;
     },
 
-    loadExample () {
+    loadExample() {
         if (this.url && TipsManager.hasSupport(this.__name)) {
             this.menu.loadScene(this.url);
         }
     },
 
-    updateItem (idx, y, name, url) {
+    updateItem(idx, y, name, url) {
         let isDir = !url;
         this.index = idx;
         this.node.y = y;

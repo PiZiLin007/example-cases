@@ -59,18 +59,18 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
 
-        for (var i = 0; i < this.nodeCount; i++) {
-            var node = cc.instantiate(this.tempPrefab);
+        for (let i = 0; i < this.nodeCount; i++) {
+            let node = cc.instantiate(this.tempPrefab);
             node.x = (Math.random() - 0.5) * 960;
             node.y = (Math.random() - 0.5) * 640;
             node.parent = this.root;
         }
 
         this.movingNode = this._useCamera ? this.camera : this.root;
-        
+
         this.setMacroCulling(this._enableCulling);
     },
-    
+
     setMacroCulling: function (enable) {
         if (cc.macro.ENABLE_CULLING === enable || CC_JSB) return;
 
@@ -81,7 +81,7 @@ cc.Class({
     // called every frame, uncomment this function to activate update callback
     update: function (dt) {
         this.movingNode.x += this.moveSpeed * dt;
-        if ((this.moveSpeed > 0 && this.movingNode.x > 900) || 
+        if ((this.moveSpeed > 0 && this.movingNode.x > 900) ||
             (this.moveSpeed < 0 && this.movingNode.x < -900)) {
             this.moveSpeed *= -1;
         }

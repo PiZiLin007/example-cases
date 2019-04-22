@@ -19,7 +19,7 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        
+
     },
 
     // called every frame

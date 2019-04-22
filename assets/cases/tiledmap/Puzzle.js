@@ -1,5 +1,5 @@
 
-var MoveDirection = cc.Enum({
+let MoveDirection = cc.Enum({
     NONE: 0,
     UP: 1,
     DOWN: 2,
@@ -7,9 +7,9 @@ var MoveDirection = cc.Enum({
     RIGHT: 4
 });
 
-var minTilesCount = 2;
-var mapMoveStep = 1;
-var minMoveValue = 50;
+let minTilesCount = 2;
+let mapMoveStep = 1;
+let minMoveValue = 50;
 
 cc.Class({
     extends: cc.Component,
@@ -27,7 +27,7 @@ cc.Class({
             serializable: false,
         },
 
-        _isMapLoaded : {
+        _isMapLoaded: {
             default: false,
             serializable: false,
         },
@@ -45,18 +45,18 @@ cc.Class({
         },
 
         startObjectName: {
-            default:'SpawnPoint'
+            default: 'SpawnPoint'
         },
 
         successObjectName: {
-            default:'SuccessPoint'
+            default: 'SuccessPoint'
         }
     },
 
     // use this for initialization
     onLoad: function () {
         this._player = this.node.getChildByName('player');
-        if (! this._isMapLoaded) {
+        if (!this._isMapLoaded) {
             this._player.active = false;
         }
 
@@ -70,18 +70,18 @@ cc.Class({
             if (!this._touching || !this._isMapLoaded || this._succeedLayer.active) return;
 
             this._touching = false;
-            var touchPos = event.touch.getLocation();
-            var movedX = touchPos.x - this._touchStartPos.x;
-            var movedY = touchPos.y - this._touchStartPos.y;
-            var movedXValue = Math.abs(movedX);
-            var movedYValue = Math.abs(movedY);
+            let touchPos = event.touch.getLocation();
+            let movedX = touchPos.x - this._touchStartPos.x;
+            let movedY = touchPos.y - this._touchStartPos.y;
+            let movedXValue = Math.abs(movedX);
+            let movedYValue = Math.abs(movedY);
             if (movedXValue < minMoveValue && movedYValue < minMoveValue) {
                 // touch moved not enough
                 return;
             }
 
-            var newTile = cc.v2(this._curTile.x, this._curTile.y);
-            var mapMoveDir = MoveDirection.NONE;
+            let newTile = cc.v2(this._curTile.x, this._curTile.y);
+            let mapMoveDir = MoveDirection.NONE;
             if (movedXValue >= movedYValue) {
                 // move to right or left
                 if (movedX > 0) {
@@ -105,7 +105,7 @@ cc.Class({
         });
     },
 
-    onDestroy () {
+    onDestroy() {
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this._onKeyPressed, this);
     },
 
@@ -128,15 +128,15 @@ cc.Class({
 
         // init the player position
         this._tiledMap = this.node.getComponent('cc.TiledMap');
-        var objectGroup = this._tiledMap.getObjectGroup(this.objectGroupName);
+        let objectGroup = this._tiledMap.getObjectGroup(this.objectGroupName);
         if (!objectGroup) return;
 
-        var startObj = objectGroup.getObject(this.startObjectName);
-        var endObj = objectGroup.getObject(this.successObjectName);
+        let startObj = objectGroup.getObject(this.startObjectName);
+        let endObj = objectGroup.getObject(this.successObjectName);
         if (!startObj || !endObj) return;
 
-        var startPos = cc.v2(startObj.x, startObj.y);
-        var endPos = cc.v2(endObj.x, endObj.y);
+        let startPos = cc.v2(startObj.x, startObj.y);
+        let endPos = cc.v2(endObj.x, endObj.y);
 
         this._layerFloor = this._tiledMap.getLayer(this.floorLayerName);
         this._layerBarrier = this._tiledMap.getLayer(this.barrierLayerName);
@@ -158,15 +158,15 @@ cc.Class({
     },
 
     _updatePlayerPos: function() {
-        var pos = this._layerFloor.getPositionAt(this._curTile);
+        let pos = this._layerFloor.getPositionAt(this._curTile);
         this._player.setPosition(pos);
     },
 
     _getTilePos: function(posInPixel) {
-        var mapSize = this.node.getContentSize();
-        var tileSize = this._tiledMap.getTileSize();
-        var x = Math.floor(posInPixel.x / tileSize.width);
-        var y = Math.floor((mapSize.height - posInPixel.y) / tileSize.height);
+        let mapSize = this.node.getContentSize();
+        let tileSize = this._tiledMap.getTileSize();
+        let x = Math.floor(posInPixel.x / tileSize.width);
+        let y = Math.floor((mapSize.height - posInPixel.y) / tileSize.height);
 
         return cc.v2(x, y);
     },
@@ -174,9 +174,9 @@ cc.Class({
     _onKeyPressed: function(event) {
         if (!this._isMapLoaded || this._succeedLayer.active) return;
 
-        var newTile = cc.v2(this._curTile.x, this._curTile.y);
-        var mapMoveDir = MoveDirection.NONE;
-        switch(event.keyCode) {
+        let newTile = cc.v2(this._curTile.x, this._curTile.y);
+        let mapMoveDir = MoveDirection.NONE;
+        switch (event.keyCode) {
             case cc.macro.KEY.up:
                 newTile.y -= 1;
                 mapMoveDir = MoveDirection.DOWN;
@@ -201,7 +201,7 @@ cc.Class({
     },
 
     _tryMoveToNewTile: function(newTile, mapMoveDir) {
-        var mapSize = this._tiledMap.getMapSize();
+        let mapSize = this._tiledMap.getMapSize();
         if (newTile.x < 0 || newTile.x >= mapSize.width) return;
         if (newTile.y < 0 || newTile.y >= mapSize.height) return;
 
@@ -226,17 +226,17 @@ cc.Class({
 
     _tryMoveMap: function(moveDir) {
         // get necessary data
-        var mapContentSize = this.node.getContentSize();
-        var mapPos = this.node.getPosition();
-        var playerPos = this._player.getPosition();
-        var viewSize = cc.size(cc.visibleRect.width, cc.visibleRect.height);
-        var tileSize = this._tiledMap.getTileSize();
-        var minDisX = minTilesCount * tileSize.width;
-        var minDisY = minTilesCount * tileSize.height;
+        let mapContentSize = this.node.getContentSize();
+        let mapPos = this.node.getPosition();
+        let playerPos = this._player.getPosition();
+        let viewSize = cc.size(cc.visibleRect.width, cc.visibleRect.height);
+        let tileSize = this._tiledMap.getTileSize();
+        let minDisX = minTilesCount * tileSize.width;
+        let minDisY = minTilesCount * tileSize.height;
 
-        var disX = playerPos.x + mapPos.x;
-        var disY = playerPos.y + mapPos.y;
-        var newPos;
+        let disX = playerPos.x + mapPos.x;
+        let disY = playerPos.y + mapPos.y;
+        let newPos;
         switch (moveDir) {
             case MoveDirection.UP:
                 if (disY < minDisY) {
@@ -264,10 +264,10 @@ cc.Class({
 
         if (newPos) {
             // calculate the position range of map
-            var minX = viewSize.width - mapContentSize.width - cc.visibleRect.left;
-            var maxX = cc.visibleRect.left.x;
-            var minY = viewSize.height - mapContentSize.height - cc.visibleRect.bottom;
-            var maxY = cc.visibleRect.bottom.y;
+            let minX = viewSize.width - mapContentSize.width - cc.visibleRect.left;
+            let maxX = cc.visibleRect.left.x;
+            let minY = viewSize.height - mapContentSize.height - cc.visibleRect.bottom;
+            let maxY = cc.visibleRect.bottom.y;
 
             if (newPos.x < minX) newPos.x = minX;
             if (newPos.x > maxX) newPos.x = maxX;

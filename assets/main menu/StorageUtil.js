@@ -2,14 +2,14 @@ cc.Class({
     extends: cc.Component,
 
     // record example-case state
-    setCurrentScene (sceneName) {
+    setCurrentScene(sceneName) {
         if (!CC_PREVIEW) {
             return;
         }
         cc.sys.localStorage.setItem('current-scene', sceneName);
     },
 
-    getCurrentScene () {
+    getCurrentScene() {
         if (!CC_PREVIEW) {
             return;
         }
@@ -20,7 +20,7 @@ cc.Class({
         return null;
     },
     // if you want to init the example-case state
-    clearStorage () {
+    clearStorage() {
         cc.sys.localStorage.clear();
     }
 });

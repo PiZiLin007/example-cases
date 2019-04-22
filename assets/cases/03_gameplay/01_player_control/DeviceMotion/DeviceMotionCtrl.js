@@ -12,15 +12,15 @@ cc.Class({
         _acc: cc.v2(0, 0)
     },
 
-    onLoad () {
+    onLoad() {
         this._enabled = false;
-        var screenSize = cc.view.getVisibleSize();
+        let screenSize = cc.view.getVisibleSize();
         this._range.x = screenSize.width / 2 - this.target.width / 2;
         this._range.y = screenSize.height / 2 - this.target.height / 2;
         cc.systemEvent.on(cc.SystemEvent.EventType.DEVICEMOTION, this.onDeviceMotionEvent, this);
     },
 
-    onOpenAccelerometer () {
+    onOpenAccelerometer() {
         this._enabled = !this._enabled;
         if (this._enabled) {
             this.btn_label.textKey = i18n.t('cases/03_gameplay/01_player_control/On/DeviceMotion.fire.2');
@@ -29,25 +29,26 @@ cc.Class({
             this.btn_label.textKey = i18n.t('cases/03_gameplay/01_player_control/On/DeviceMotion.fire.1');
         }
         if (!this._enabled) {
-            this._acc.x =  0;
-            this._acc.y =  0;
+            this._acc.x = 0;
+            this._acc.y = 0;
             this._time = 0;
         }
         cc.systemEvent.setAccelerometerEnabled(this._enabled);
     },
 
-    onDestroy () {
+    onDestroy() {
         cc.systemEvent.setAccelerometerEnabled(false);
         cc.systemEvent.off(cc.SystemEvent.EventType.DEVICEMOTION, this.onDeviceMotionEvent, this);
     },
 
-    onDeviceMotionEvent (event) {
-        this._acc.x =  event.acc.x;
-        this._acc.y =  event.acc.y;
+    onDeviceMotionEvent(event) {
+        this._acc.x = event.acc.x;
+        this._acc.y = event.acc.y;
     },
 
-    update (dt) {
-        var target = this.target, range = this._range;
+    update(dt) {
+        let target = this.target; let
+            range = this._range;
         this._time += 5;
         target.x += this._acc.x * dt * (this.speed + this._time);
         target.x = cc.misc.clampf(target.x, -range.x, range.x);

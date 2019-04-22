@@ -5,19 +5,19 @@ cc.Class({
         scrollViewContent: cc.Node,
         logItem: cc.Prefab,
     },
-    
-    onLoad () {
+
+    onLoad() {
         let self = this;
         cc.game.on(cc.game.EVENT_HIDE, this.addHideLogItem, this);
         cc.game.on(cc.game.EVENT_SHOW, this.addShowLogItem, this);
     },
 
-    onDestroy () {
+    onDestroy() {
         cc.game.off(cc.game.EVENT_HIDE, this.addHideLogItem, this);
         cc.game.off(cc.game.EVENT_SHOW, this.addShowLogItem, this);
     },
 
-    addHideLogItem () {
+    addHideLogItem() {
         let item = cc.instantiate(this.logItem);
         let comp = item.getComponent('HideOrShowEventLogItem');
         comp && comp.setTimeDisplay(this.getTimes());
@@ -25,21 +25,21 @@ cc.Class({
         this.scrollViewContent.addChild(item);
     },
 
-    addShowLogItem () {
-        let item = cc.instantiate(this.logItem);        
+    addShowLogItem() {
+        let item = cc.instantiate(this.logItem);
         let comp = item.getComponent('HideOrShowEventLogItem');
         comp && comp.setTimeDisplay(this.getTimes());
         comp && comp.setEventDisplay('EVENT_SHOW triggered');
         this.scrollViewContent.addChild(item);
     },
 
-    getTimes () {
+    getTimes() {
         let date = new Date();
         return `[${date.getHours()} : ${date.getMinutes()} : ${date.getSeconds()}]`;
     },
 
-    clearLog () {
-        this.scrollViewContent.children.forEach(function(node){
+    clearLog() {
+        this.scrollViewContent.children.forEach(function(node) {
             node.destroy();
         });
         this.scrollViewContent.children.length = 0;

@@ -13,13 +13,13 @@ cc.Class({
         }
     },
 
-    start () {
+    start() {
         cc.loader.loadRes('loadSpine/alien-ess', sp.SkeletonData, this.onProcess.bind(this), this.onComplete.bind(this));
     },
 
-    onProcess (completeCount, totalCount, item) {},
+    onProcess(completeCount, totalCount, item) {},
 
-    onComplete (err, res) {
+    onComplete(err, res) {
         if (err) {
             this.label.textKey = i18n.t('sprite_loadRes_asset_failed');
             cc.error(err);
@@ -27,7 +27,7 @@ cc.Class({
 
         let spine = this.getComponent('sp.Skeleton');
         spine.skeletonData = res;
-        let animate = spine.setAnimation(0, 'run', true);    
+        let animate = spine.setAnimation(0, 'run', true);
         this.label.textKey = i18n.t('sprite_loadRes_asset_success');
     }
 

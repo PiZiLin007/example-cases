@@ -22,7 +22,7 @@ cc.Class({
     },
 
     _updateWdith: function (node, range, dt) {
-        var width = node.width;
+        let width = node.width;
         width = width < range ? width += dt * this.speed : 0;
         node.width = width;
     }

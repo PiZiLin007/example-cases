@@ -6,11 +6,11 @@ cc.Class({
         tips: require('LabelLocalized')
     },
 
-    start () {
+    start() {
         this.tips.textKey = 'cases/subpackage1.loaded';
     },
 
-    goLoadSubpackage () {
+    goLoadSubpackage() {
         cc.director.loadScene('Subpackages');
     },
 

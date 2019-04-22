@@ -13,7 +13,7 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        //add keyboard input listener to call turnLeft and turnRight
+        // add keyboard input listener to call turnLeft and turnRight
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyPressed, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyReleased, this);
 
@@ -35,10 +35,10 @@ cc.Class({
         cc.director.getCollisionManager().enabled = false;
         cc.director.getCollisionManager().enabledDebugDraw = false;
     },
-    
+
     onKeyPressed: function (event) {
         let keyCode = event.keyCode;
-        switch(keyCode) {
+        switch (keyCode) {
             case cc.macro.KEY.a:
             case cc.macro.KEY.left:
                 this.direction = -1;
@@ -51,15 +51,15 @@ cc.Class({
             case cc.macro.KEY.up:
                 if (!this.jumping) {
                     this.jumping = true;
-                    this.speed.y = this.jumpSpeed;    
+                    this.speed.y = this.jumpSpeed;
                 }
                 break;
         }
     },
-    
+
     onKeyReleased: function (event) {
         let keyCode = event.keyCode;
-        switch(keyCode) {
+        switch (keyCode) {
             case cc.macro.KEY.a:
             case cc.macro.KEY.left:
             case cc.macro.KEY.d:
@@ -68,19 +68,19 @@ cc.Class({
                 break;
         }
     },
-    
+
     onCollisionEnter: function (other, self) {
         this.node.color = cc.Color.RED;
 
-        this.touchingNumber ++;
-        
-        // 1st step 
-        // get pre aabb, go back before collision
-        var otherAabb = other.world.aabb;
-        var otherPreAabb = other.world.preAabb.clone();
+        this.touchingNumber++;
 
-        var selfAabb = self.world.aabb;
-        var selfPreAabb = self.world.preAabb.clone();
+        // 1st step
+        // get pre aabb, go back before collision
+        let otherAabb = other.world.aabb;
+        let otherPreAabb = other.world.preAabb.clone();
+
+        let selfAabb = self.world.aabb;
+        let selfPreAabb = self.world.preAabb.clone();
 
         // 2nd step
         // forward x-axis, check whether collision on x-axis
@@ -117,17 +117,17 @@ cc.Class({
                 this.node.y = otherPreAabb.yMin - selfPreAabb.height - this.node.parent.y;
                 this.collisionY = 1;
             }
-            
+
             this.speed.y = 0;
             other.touchingY = true;
-        }    
-        
+        }
+
     },
-    
+
     onCollisionStay: function (other, self) {
         if (this.collisionY === -1) {
             if (other.node.group === 'Platform') {
-                var motion = other.node.getComponent('PlatformMotion');
+                let motion = other.node.getComponent('PlatformMotion');
                 if (motion) {
                     this.node.x += motion._movedDiff;
                 }
@@ -136,17 +136,17 @@ cc.Class({
             // this.node.y = other.world.aabb.yMax;
 
             // var offset = cc.v2(other.world.aabb.x - other.world.preAabb.x, 0);
-            
+
             // var temp = cc.affineTransformClone(self.world.transform);
             // temp.tx = temp.ty = 0;
-            
+
             // offset = cc.pointApplyAffineTransform(offset, temp);
             // this.node.x += offset.x;
         }
     },
-    
+
     onCollisionExit: function (other) {
-        this.touchingNumber --;
+        this.touchingNumber--;
         if (this.touchingNumber === 0) {
             this.node.color = cc.Color.WHITE;
         }
@@ -161,7 +161,7 @@ cc.Class({
             this.jumping = true;
         }
     },
-    
+
     update: function (dt) {
         if (this.collisionY === 0) {
             this.speed.y += this.gravity * dt;
@@ -190,13 +190,13 @@ cc.Class({
         if (this.speed.x * this.collisionX > 0) {
             this.speed.x = 0;
         }
-        
+
         this.prePosition.x = this.node.x;
         this.prePosition.y = this.node.y;
 
         this.preStep.x = this.speed.x * dt;
         this.preStep.y = this.speed.y * dt;
-        
+
         this.node.x += this.speed.x * dt;
         this.node.y += this.speed.y * dt;
     },

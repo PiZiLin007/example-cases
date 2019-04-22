@@ -10,7 +10,7 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        var anim = this.sheepAnim;
+        let anim = this.sheepAnim;
         this._playAnimCallback = function() {
             anim.play('sheep_jump');
         };

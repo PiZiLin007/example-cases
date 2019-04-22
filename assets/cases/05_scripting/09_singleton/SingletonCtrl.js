@@ -1,4 +1,4 @@
-var Singleton = require("Singleton");
+let Singleton = require('Singleton');
 
 cc.Class({
     extends: cc.Component,
@@ -8,8 +8,8 @@ cc.Class({
     },
 
     start: function () {
-        var node = new cc.Node("Monster");
-        var sprite = node.addComponent(cc.Sprite);
+        let node = new cc.Node('Monster');
+        let sprite = node.addComponent(cc.Sprite);
         sprite.spriteFrame = Singleton.instance.monsterIcon;
         node.parent = this.node;
     }

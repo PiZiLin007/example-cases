@@ -6,11 +6,11 @@ cc.Class({
     },
 
     // onLoad () {},
-    onDestroySelf () {
+    onDestroySelf() {
         this.node.destroy();
     },
 
-    setContent (str) {
+    setContent(str) {
         if (str) {
             this.content.textKey = str;
         }

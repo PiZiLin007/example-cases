@@ -7,18 +7,21 @@ cc.Class({
     },
 
     onLoad: function () {
-        var self = this, parent = this.node.parent;
+        let self = this; let
+            parent = this.node.parent;
         self.canvas.on(cc.Node.EventType.TOUCH_MOVE, function (event) {
-            var touches = event.getTouches();
+            let touches = event.getTouches();
             if (touches.length >= 2) {
-                var touch1 = touches[0], touch2 = touches[1];
-                var delta1 = touch1.getDelta(), delta2 = touch2.getDelta();
-                var touchPoint1 = parent.convertToNodeSpaceAR(touch1.getLocation());
-                var touchPoint2 = parent.convertToNodeSpaceAR(touch2.getLocation());
-                //缩放
-                var distance = touchPoint1.sub(touchPoint2);
-                var delta = delta1.sub(delta2);
-                var scale = 1;
+                let touch1 = touches[0]; let
+                    touch2 = touches[1];
+                let delta1 = touch1.getDelta(); let
+                    delta2 = touch2.getDelta();
+                let touchPoint1 = parent.convertToNodeSpaceAR(touch1.getLocation());
+                let touchPoint2 = parent.convertToNodeSpaceAR(touch2.getLocation());
+                // 缩放
+                let distance = touchPoint1.sub(touchPoint2);
+                let delta = delta1.sub(delta2);
+                let scale = 1;
                 if (Math.abs(distance.x) > Math.abs(distance.y)) {
                     scale = (distance.x + delta.x) / distance.x * self.target.scale;
                 }

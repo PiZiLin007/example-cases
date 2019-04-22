@@ -19,18 +19,18 @@ cc.Class({
     },
 
     _createLabel: function (text) {
-        var node = cc.instantiate(this.label);
-        var label = node.getComponent(cc.Label);
+        let node = cc.instantiate(this.label);
+        let label = node.getComponent(cc.Label);
         label.textKey = text;
         this.scrollView.content.addChild(node);
     },
 
     _clear: function () {
         this.scrollView.content.removeAllChildren(true);
-        for (var i = 0; i < this._assets.length; ++i) {
-            var asset = this._assets[i];
+        for (let i = 0; i < this._assets.length; ++i) {
+            let asset = this._assets[i];
             // 需要释放所有资源依赖
-            var deps = cc.loader.getDependsRecursively(asset);
+            let deps = cc.loader.getDependsRecursively(asset);
             cc.loader.release(deps);
         }
     },
@@ -42,23 +42,23 @@ cc.Class({
     },
 
     onLoadAll: function () {
-        if (this._hasLoading) { return; }
+        if (this._hasLoading) { return }
         this._hasLoading = true;
 
         this._clear();
-        this._createLabel("Load All Assets");
+        this._createLabel('Load All Assets');
         this.scrollView.scrollToTop();
         this.btnClearAll.active = false;  // 防止加载的过程中清除资源
 
-        cc.loader.loadResDir("test_assets", (err, assets) => {
+        cc.loader.loadResDir('test_assets', (err, assets) => {
             if (!this.isValid) {
                 return;
             }
 
             this._assets = assets;
-            for (var i = 0; i < assets.length; ++i) {
-                var asset = assets[i];
-                var info = asset.toString();
+            for (let i = 0; i < assets.length; ++i) {
+                let asset = assets[i];
+                let info = asset.toString();
                 if (!info) {
                     if (asset instanceof cc.JsonAsset) {
                         info = JSON.stringify(asset.json, null, 4);
@@ -75,21 +75,21 @@ cc.Class({
     },
 
     onLoadSpriteFrameAll: function () {
-        if (this._hasLoading) { return; }
+        if (this._hasLoading) { return }
         this._hasLoading = true;
 
         this._clear();
-        this._createLabel("Load All Sprite Frame");
+        this._createLabel('Load All Sprite Frame');
         this.scrollView.scrollToTop();
         this.btnClearAll.active = false;  // 防止加载的过程中清除资源
 
-        cc.loader.loadResDir("test_assets", cc.SpriteFrame, (err, assets) => {
+        cc.loader.loadResDir('test_assets', cc.SpriteFrame, (err, assets) => {
             if (!this.isValid) {
                 return;
             }
             this._assets = assets;
-            for (var i = 0; i < assets.length; ++i) {
-                var asset = assets[i];
+            for (let i = 0; i < assets.length; ++i) {
+                let asset = assets[i];
                 this._createLabel(asset.name);
             }
             this._hasLoading = false;

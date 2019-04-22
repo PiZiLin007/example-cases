@@ -10,25 +10,25 @@ cc.Class({
         _isEditingReturn: false,
     },
 
-    start () {
+    start() {
         this.editBox.stayOnTop = this.stayOnTop.isChecked;
         this.stayOnTop.node.active = cc.sys.isBrowser;
         this.platfromTip.active = !cc.sys.isBrowser;
     },
 
-    onStayOnTop (event) {
-        this.editBox.stayOnTop = event.isChecked;        
+    onStayOnTop(event) {
+        this.editBox.stayOnTop = event.isChecked;
     },
-    
-    editingDidBegan (event) {
+
+    editingDidBegan(event) {
         this.eventDisplay.string = 'editing did began';
     },
 
-    textChanged (event) {
+    textChanged(event) {
         this.eventDisplay.string = 'text changed: ' + event;
     },
 
-    editingDidEnded (event) {
+    editingDidEnded(event) {
         if (this._isEditingReturn) {
             this.eventDisplay.string = 'editing returned and ended';
             this._isEditingReturn = false;
@@ -38,7 +38,7 @@ cc.Class({
         }
     },
 
-    editingReturn (event) {
+    editingReturn(event) {
         this._isEditingReturn = true;
     },
 });

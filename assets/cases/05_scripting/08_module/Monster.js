@@ -35,16 +35,16 @@ cc.Class({
         this.atk.string = info.atk;
         this.defense.string = info.defense;
 
-        var image = this.image;
+        let image = this.image;
         cc.loader.loadRes(info.imageUrl, cc.SpriteFrame, function (error, spriteFrame) {
             if (!error) {
                 image.spriteFrame = spriteFrame;
             }
         });
 
-        //cc.loader.load(, function (error, res) {
+        // cc.loader.load(, function (error, res) {
         //    console.log(res);
-        //}.bind(this));
+        // }.bind(this));
     }
 
     // called every frame, uncomment this function to activate update callback

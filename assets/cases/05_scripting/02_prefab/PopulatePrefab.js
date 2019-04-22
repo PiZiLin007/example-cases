@@ -17,22 +17,22 @@ cc.Class({
         numberToSpawn: 0,
         spawnInterval: 0
     },
-    
+
     addSpawn: function () {
         if (this.spawnCount >= this.numberToSpawn) {
             this.clearRepeater();
             return;
         }
-        var monster = cc.instantiate(this.prefab);
+        let monster = cc.instantiate(this.prefab);
         monster.parent = this.root;
-        //this.canvas.node.addChild(monster);
+        // this.canvas.node.addChild(monster);
         monster.position = this.getRandomPosition();
         this.spawnCount++;
     },
 
     // use this for initialization
     onLoad: function () {
-        var self = this;
+        let self = this;
         self.randomRange = cc.v2(300, 200);
         self.spawnCount = 0;
         self.schedule(self.addSpawn, self.spawnInterval);

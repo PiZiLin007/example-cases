@@ -4,14 +4,14 @@
  * @file  Constants
  * @author  Isaac Suttell
  ************************************************/
- 
+
 /**
  * For radian conversion
  *
  * @constant
  * @type    {Number}
  */
-var PI180 = Math.PI / 180;
+let PI180 = Math.PI / 180;
 
 /**
  * Twice of PI
@@ -19,7 +19,7 @@ var PI180 = Math.PI / 180;
  * @constant
  * @type {Number}
  */
-var PI2 = Math.PI * 2;
+let PI2 = Math.PI * 2;
 
 /**
  * Half of PI
@@ -27,7 +27,7 @@ var PI2 = Math.PI * 2;
  * @constant
  * @type {Number}
  */
-var HALFPI = Math.PI / 2;
+let HALFPI = Math.PI / 2;
 
 /************************************************
  * @file  Left to right easing functions
@@ -39,7 +39,7 @@ var HALFPI = Math.PI / 2;
  *
  * @type    {Object}
  */
-var Ease = {};
+let Ease = {};
 
 /**
  * Do not apply any easing
@@ -50,7 +50,7 @@ var Ease = {};
  * @return {Number}           the new strength
  */
 Ease.linear = function(percent, amplitude) {
-  return amplitude;
+    return amplitude;
 };
 
 /**
@@ -63,7 +63,7 @@ Ease.linear = function(percent, amplitude) {
  * @return {Number}           the new strength
  */
 Ease.sinein = function(percent, amplitude) {
-  return amplitude * (Math.sin(percent * Math.PI - HALFPI) + 1) * 0.5;
+    return amplitude * (Math.sin(percent * Math.PI - HALFPI) + 1) * 0.5;
 };
 
 /**
@@ -76,7 +76,7 @@ Ease.sinein = function(percent, amplitude) {
  * @return {Number}           the new strength
  */
 Ease.sineout = function(percent, amplitude) {
-  return amplitude * (Math.sin(percent * Math.PI + HALFPI) + 1) * 0.5;
+    return amplitude * (Math.sin(percent * Math.PI + HALFPI) + 1) * 0.5;
 };
 
 /**
@@ -89,7 +89,7 @@ Ease.sineout = function(percent, amplitude) {
  * @return {Number}           the new strength
  */
 Ease.sineinout = function(percent, amplitude) {
-  return amplitude * (Math.sin(percent * PI2 - HALFPI) + 1) * 0.5;
+    return amplitude * (Math.sin(percent * PI2 - HALFPI) + 1) * 0.5;
 };
 
 let EaseEnumOptins = {};
@@ -108,7 +108,7 @@ Ease.Enum = cc.Enum(EaseEnumOptins);
  *
  * @type    {Object}
  */
-var Waves = {};
+let Waves = {};
 
 /**
  * Default Sine Waves
@@ -116,7 +116,7 @@ var Waves = {};
  * @param    {Number}    x
  */
 Waves.sine = function(x) {
-  return Math.sin(x);
+    return Math.sin(x);
 };
 
 
@@ -129,11 +129,11 @@ Waves.sine = function(x) {
  * @return    {Number}
  */
 Waves.sign = function(x) {
-  x = +x; // convert to a number
-  if (x === 0 || isNaN(x)) {
-    return x;
-  }
-  return x > 0 ? 1 : -1;
+    x = Number(x); // convert to a number
+    if (x === 0 || isNaN(x)) {
+        return x;
+    }
+    return x > 0 ? 1 : -1;
 };
 
 /**
@@ -142,7 +142,7 @@ Waves.sign = function(x) {
  * @param    {Number}    x
  */
 Waves.square = function(x) {
-  return Waves.sign(Math.sin(x * PI2));
+    return Waves.sign(Math.sin(x * PI2));
 };
 
 /**
@@ -151,7 +151,7 @@ Waves.square = function(x) {
  * @param    {Number}    x
  */
 Waves.sawtooth = function(x) {
-  return (x - Math.floor(x + 0.5)) * 2;
+    return (x - Math.floor(x + 0.5)) * 2;
 };
 
 /**
@@ -160,7 +160,7 @@ Waves.sawtooth = function(x) {
  * @param    {Number}    x
  */
 Waves.triangle = function(x) {
-  return Math.abs(Waves.sawtooth(x));
+    return Math.abs(Waves.sawtooth(x));
 };
 
 let WavesEnumOptins = {};
@@ -224,7 +224,7 @@ let SineWaves = cc.Class({
     update: function (dt) {
         this.ctx.clear();
 
-        this.yAxis = cc.visibleRect.height/2;
+        this.yAxis = cc.visibleRect.height / 2;
         this.width = cc.visibleRect.width;
 
         this.waveWidth = this.width * 0.95;
@@ -235,7 +235,7 @@ let SineWaves = cc.Class({
         // Draw each line
         let waves = this.waves;
         for (let i = 0, l = waves.length; i < l; i++) {
-            var timeModifier = this.waves[i].timeModifier || 1;
+            let timeModifier = this.waves[i].timeModifier || 1;
             this.drawWave(this.time * timeModifier, waves[i]);
         }
     },
@@ -280,11 +280,11 @@ let SineWaves = cc.Class({
      * @return {Object}          {x, y}
      */
     getPoint: function(time, position, options) {
-        var x = (time * this.speed) + (-this.yAxis + position) / options.wavelength;
-        var y = options.waveFn(x);
+        let x = (time * this.speed) + (-this.yAxis + position) / options.wavelength;
+        let y = options.waveFn(x);
 
         // Left and Right Sine Easing
-        var amplitude = options.easeFn(position / this.waveWidth, options.amplitude);
+        let amplitude = options.easeFn(position / this.waveWidth, options.amplitude);
 
         x = position + this.waveLeft;
         y = amplitude * y + this.yAxis;

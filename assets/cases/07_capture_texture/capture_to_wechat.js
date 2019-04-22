@@ -1,7 +1,7 @@
 cc.Class({
     extends: require('./textureRenderUtils'),
 
-    start () {
+    start() {
         this.init();
         // create the capture
         this.scheduleOnce(() => {
@@ -11,7 +11,7 @@ cc.Class({
         }, 1);
     },
 
-    saveFile (tempCanvas) {
+    saveFile(tempCanvas) {
         // This is one of the ways that could save the img to your local.
         if (cc.sys.platform === cc.sys.WECHAT_GAME) {
             let self = this;
@@ -25,7 +25,7 @@ cc.Class({
                 destHeight: canvas.height,
                 fileType: 'png',
                 quality: 1
-            }
+            };
             // https://developers.weixin.qq.com/minigame/dev/api/render/canvas/Canvas.toTempFilePathSync.html
             let _tempFilePath = tempCanvas.toTempFilePathSync(data);
             cc.log(`Capture file success!${_tempFilePath}`);

@@ -7,15 +7,15 @@ module.exports = {
     SupportConfig: function (name) {
         switch (name) {
             case 'downloader-web':
-            case 'EditBoxTabIndex':     return !cc.sys.isNative;
-            case 'OnMultiTouchInput':   return cc.sys.isMobile;
-            case 'webp-test':           return cc.sys.capabilities['webp'];
-            case 'DeviceMotion':        return cc.sys.isMobile && cc.sys.platform !== cc.sys.QQ_PLAY && cc.sys.platform !== cc.sys.VIVO_GAME;
-            case 'Native_Call':         return cc.sys.isMobile && cc.sys.platform === cc.sys.ANDROID && !CC_RUNTIME;
-            case 'TTFFontLabel':        return cc.sys.platform !== cc.sys.QQ_PLAY;
+            case 'EditBoxTabIndex': return !cc.sys.isNative;
+            case 'OnMultiTouchInput': return cc.sys.isMobile;
+            case 'webp-test': return cc.sys.capabilities['webp'];
+            case 'DeviceMotion': return cc.sys.isMobile && cc.sys.platform !== cc.sys.QQ_PLAY && cc.sys.platform !== cc.sys.VIVO_GAME;
+            case 'Native_Call': return cc.sys.isMobile && cc.sys.platform === cc.sys.ANDROID && !CC_RUNTIME;
+            case 'TTFFontLabel': return cc.sys.platform !== cc.sys.QQ_PLAY;
             case 'Subpackages':
                 return (!CC_PREVIEW && !CC_JSB && !cc.sys.isBrowser && cc.sys.platform !== cc.sys.QQ_PLAY && cc.sys.platform !== cc.sys.VIVO_GAME);
-            case 'MousePropagation':    return ((cc.sys.isNative && !cc.sys.isMobile && cc.sys.platform !== cc.sys.WECHAT_GAME && cc.sys.platform !== cc.sys.QQ_PLAY) || cc.sys.platform === cc.sys.DESKTOP_BROWSER);
+            case 'MousePropagation': return ((cc.sys.isNative && !cc.sys.isMobile && cc.sys.platform !== cc.sys.WECHAT_GAME && cc.sys.platform !== cc.sys.QQ_PLAY) || cc.sys.platform === cc.sys.DESKTOP_BROWSER);
             case 'downloader-native':
                 return cc.sys.isNative && !CC_RUNTIME;
 
@@ -25,7 +25,7 @@ module.exports = {
             case 'iOS_getSafeArea':
                 return (cc.sys.platform === cc.sys.IPHONE && cc.sys.isNative);
             case 'capture_to_wechat':
-                return  cc.sys.platform === cc.sys.WECHAT_GAME;
+                return cc.sys.platform === cc.sys.WECHAT_GAME;
             case 'capture_to_web':
                 return cc.sys.isBrowser;
 
@@ -46,13 +46,13 @@ module.exports = {
 
             // Not support the VIVO_GAME, OPPO_GAME, WECHAT_GAME, QQ_PLAY, CC_RUNTIME
             case 'webview':
-                return  (cc.sys.isMobile || cc.sys.isBrowser) && !CC_RUNTIME && cc.sys.platform !== cc.sys.QQ_PLAY && cc.sys.platform !== cc.sys.WECHAT_GAME;
+                return (cc.sys.isMobile || cc.sys.isBrowser) && !CC_RUNTIME && cc.sys.platform !== cc.sys.QQ_PLAY && cc.sys.platform !== cc.sys.WECHAT_GAME;
             case 'mesh':
                 return cc.sys.platform !== cc.sys.VIVO_GAME && cc.sys.platform !== cc.sys.OPPO_GAME;
         }
     },
 
-    init () {
+    init() {
         if (this.tipsPrefab) return;
 
         cc.loader.loadRes('tips/Tips', (err, prefab) => {
@@ -60,7 +60,7 @@ module.exports = {
         });
     },
 
-    createTips (content) {
+    createTips(content) {
         let node = cc.instantiate(this.tipsPrefab);
         let tipsCtrl = node.getComponent('TipsCtrl');
         if (content) {
@@ -69,7 +69,7 @@ module.exports = {
         node.parent = cc.director.getScene();
     },
 
-    hasSupport (name, hideTip) {
+    hasSupport(name, hideTip) {
         let support = this.SupportConfig(name);
         if (!support && support !== undefined) {
             if (!hideTip) {

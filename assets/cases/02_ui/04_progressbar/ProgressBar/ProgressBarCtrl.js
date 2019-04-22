@@ -35,10 +35,10 @@ cc.Class({
         this._updateProgressBar(this.verticalBarReverse, dt);
         this._updateProgressBar(this.horizontalBarReverse, dt);
     },
-    
-    _updateProgressBar: function(progressBar, dt){
-        var progress = progressBar.progress;
-        if(progress < 1.0 && this._pingpong){
+
+    _updateProgressBar: function(progressBar, dt) {
+        let progress = progressBar.progress;
+        if (progress < 1.0 && this._pingpong) {
             progress += dt * this.speed;
         }
         else {

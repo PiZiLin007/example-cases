@@ -19,12 +19,14 @@ cc.Class({
         this.scaleBackAction = cc.scaleTo(0.1, 1, 1);
         this.moveUpAction = cc.moveBy(1, cc.v2(0, 200)).easing(cc.easeCubicActionOut());
         this.moveDownAction = cc.moveBy(1, cc.v2(0, -200)).easing(cc.easeCubicActionIn());
-        var seq = cc.sequence(this.squashAction, this.stretchAction, 
+        let seq = cc.sequence(
+            this.squashAction, this.stretchAction,
             this.moveUpAction, this.scaleBackAction, this.moveDownAction, this.squashAction, this.scaleBackAction,
-            cc.callFunc(this.callback.bind(this)));
+            cc.callFunc(this.callback.bind(this))
+        );
         // this is a temp api which will be combined to cc.Node
         this.jumper.runAction(seq);
-        
+
         this.colorNode.runAction(cc.sequence(
             cc.tintTo(2, 255, 0, 0),
             cc.delayTime(0.5),
@@ -35,7 +37,7 @@ cc.Class({
             cc.tintTo(2, 255, 255, 255)
         ).repeat(2));
     },
-    
+
     callback: function () {
         this.node.removeFromParent();
     }

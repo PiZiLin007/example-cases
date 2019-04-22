@@ -40,7 +40,7 @@ cc.Class({
             // Cocos Analytics service, to learn more please visit:
             // https://analytics.cocos.com/docs/
             cocosAnalytics.CAEvent.onEvent({
-                eventName: "打开范例"
+                eventName: '打开范例'
             });
         }
 
@@ -58,7 +58,7 @@ cc.Class({
         }
     },
 
-    _onSceneLaunched () {
+    _onSceneLaunched() {
         let cameras = cc.Camera.cameras;
         for (let i = 0, l = cameras.length; i < l; i++) {
             let camera = cameras[i];
@@ -106,7 +106,7 @@ cc.Class({
     onLoadSceneFinish: function () {
         let url = this.currentSceneUrl;
         this.loadInstruction(url);
-        // record the last close scene 
+        // record the last close scene
         this.storage.setCurrentScene(url);
 
         this.testList.node.active = false;
@@ -126,12 +126,12 @@ cc.Class({
         this._isLoadingScene = false;
     },
 
-    _getAdjacentScenes () {
+    _getAdjacentScenes() {
         let res = { next: '', prev: '' };
         let sceneList = this.sceneList.sceneList;
 
-        function findAvailableScene (startIndex, step) {
-            for (var i = startIndex; 0 <= i && i < sceneList.length; i += step) {
+        function findAvailableScene(startIndex, step) {
+            for (let i = startIndex; 0 <= i && i < sceneList.length; i += step) {
                 let url = sceneList[i].url;
                 if (url) {
                     let sceneName = cc.path.basename(url, '.fire');
@@ -167,14 +167,14 @@ cc.Class({
         return res;
     },
 
-    nextScene () {
+    nextScene() {
         let { next } = this._getAdjacentScenes();
         if (next) {
             this.loadScene(next);
         }
     },
 
-    prevScene () {
+    prevScene() {
         let { prev } = this._getAdjacentScenes();
         if (prev) {
             this.loadScene(prev);
@@ -187,7 +187,7 @@ cc.Class({
         let fileName = urlArr[urlArr.length - 1].replace('.fire', '');
         cc.loader.loadRes('readme/' + fileName, cc.TextAsset, function (err, asset) {
             if (err) {
-                self.text.string = i18n.t("scripts/Global/Menu.js.1");
+                self.text.string = i18n.t('scripts/Global/Menu.js.1');
                 return;
             }
             self.text.string = asset.text;
@@ -206,7 +206,7 @@ cc.Class({
 
         // en: fix Collider DebugDraw always displayed on top of the problem.
         // zh：解决 Collider DebugDraw 一直显示在最上层的问题。
-        var enabledDebugDraw = cc.director.getCollisionManager().enabledDebugDraw;
+        let enabledDebugDraw = cc.director.getCollisionManager().enabledDebugDraw;
         if (this.readme.node.active) {
             this.showDebugDraw = enabledDebugDraw;
             cc.director.getCollisionManager().enabledDebugDraw = false;
@@ -217,17 +217,17 @@ cc.Class({
 
         // en: fix Video Player always displayed on top of the problem.
         // zh：修复 Video Player 一直显示在最上层的问题。
-        var videoPlayer = cc.find('Canvas/VideoPlayer');
+        let videoPlayer = cc.find('Canvas/VideoPlayer');
         if (videoPlayer) {
             videoPlayer.active = !this.readme.node.active;
         }
     },
 
-    restart () {
+    restart() {
         cc.game.restart();
     },
-    
-    gc () {
+
+    gc() {
         cc.sys.garbageCollect();
     },
 });

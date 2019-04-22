@@ -26,7 +26,7 @@ cc.Class({
         },
     },
 
-    onLoad () {
+    onLoad() {
         if (this.localizedString) {
             this.string = this.localizedString;
         }

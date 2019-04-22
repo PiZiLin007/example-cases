@@ -16,17 +16,17 @@ cc.Class({
         _audioUrl: 'http://tools.itharbors.com/christmas/res/sounds/ss.mp3',
     },
 
-    onLoad () {
+    onLoad() {
         this.remindLabel.textKey = '';
         this._audioPlayer = this.node.getComponent('AudioCtrl');
     },
 
-    startLoad () {
+    startLoad() {
         // set url
         this._audioUrl = this.inputUrlBox.string;
         // download audio
         if (this._audioUrl) {
-            cc.loader.load({url: this._audioUrl, type: 'mp3'}, this.onProgress.bind(this), this.audioLoadComplete.bind(this));
+            cc.loader.load({ url: this._audioUrl, type: 'mp3' }, this.onProgress.bind(this), this.audioLoadComplete.bind(this));
             this.remindLabel.textKey = i18n.t('cases/05_scripting/11_network/download-web.fire.2');
         }
         else {
@@ -34,10 +34,10 @@ cc.Class({
         }
     },
 
-    audioLoadComplete (err, res) {
+    audioLoadComplete(err, res) {
         if (err || !res) {
             console.log(err);
-            this.remindLabel.textKey =  i18n.t('cases/05_scripting/11_network/download-web.fire.5.1');
+            this.remindLabel.textKey = i18n.t('cases/05_scripting/11_network/download-web.fire.5.1');
             return;
         }
         this.remindLabel.textKey = i18n.t('cases/05_scripting/11_network/download-web.fire.4.1');
@@ -45,11 +45,11 @@ cc.Class({
         this._audioPlayer.setAudioTask(res);
     },
 
-    onProgress (completedCount, totalCount) {
-        this.remindLabel.textKey = `${i18n.t('cases/05_scripting/11_network/download-web.fire.3')} ${(completedCount/totalCount) * 100}`;
+    onProgress(completedCount, totalCount) {
+        this.remindLabel.textKey = `${i18n.t('cases/05_scripting/11_network/download-web.fire.3')} ${(completedCount / totalCount) * 100}`;
     },
 
-    update () {
+    update() {
         this._audioPlayer.currentTime();
     },
 

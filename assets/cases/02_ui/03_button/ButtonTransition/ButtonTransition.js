@@ -4,20 +4,20 @@ cc.Class({
     properties: {
         btn: cc.Button,
     },
-    
-    onInteractable (event) {
+
+    onInteractable(event) {
         this.btn.interactable = event.isChecked;
     },
 
-    onColorTransition (event) {
+    onColorTransition(event) {
         this.btn.transition = cc.Button.Transition.COLOR;
     },
 
-    onSpriteTransition (event) {
+    onSpriteTransition(event) {
         this.btn.transition = cc.Button.Transition.SPRITE;
     },
 
-    onScaleTransition (event) {
+    onScaleTransition(event) {
         this.btn.transition = cc.Button.Transition.SCALE;
     },
 });

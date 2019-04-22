@@ -16,38 +16,38 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         // cur load Target
-        this._curType = "";
-        this._lastType = "";
+        this._curType = '';
+        this._lastType = '';
         this._curRes = null;
         this._btnLabel = null;
         this._audioSource = null;
         this._isLoading = false;
         // add load res url
         this._urls = {
-            Audio: "test_assets/audio",
-            Txt: "test_assets/text",
-            Texture: "test_assets/PurpleMonster",
-            Font: "test_assets/font",
-            Plist: "test_assets/atom.plist",
-            SpriteFrame: "test_assets/image",
-            Prefab: "test_assets/prefab",
-            Animation: "test_assets/sprite-anim",
-            Scene: "test_assets/scene",
-            Spine: "spineboy/spineboy",
-            CORS: "http://tools.itharbors.com/res/logo.png",
+            Audio: 'test_assets/audio',
+            Txt: 'test_assets/text',
+            Texture: 'test_assets/PurpleMonster',
+            Font: 'test_assets/font',
+            Plist: 'test_assets/atom.plist',
+            SpriteFrame: 'test_assets/image',
+            Prefab: 'test_assets/prefab',
+            Animation: 'test_assets/sprite-anim',
+            Scene: 'test_assets/scene',
+            Spine: 'spineboy/spineboy',
+            CORS: 'http://tools.itharbors.com/res/logo.png',
         };
         // registered event
         this._onRegisteredEvent();
     },
 
-    onDestroy () {
+    onDestroy() {
         if (this._curRes) {
             cc.loader.releaseAsset(this._curRes);
         }
     },
 
     _onRegisteredEvent: function () {
-        for (var i = 0; i < this.loadList.length; ++i) {
+        for (let i = 0; i < this.loadList.length; ++i) {
             this.loadList[i].on(cc.Node.EventType.TOUCH_END, this._onClick.bind(this));
         }
     },
@@ -60,28 +60,28 @@ cc.Class({
         this._onClear();
 
         this._curType = event.target.name.split('_')[1];
-        if (this._lastType !== "" && this._curType === this._lastType) {
+        if (this._lastType !== '' && this._curType === this._lastType) {
             this._onShowResClick(event);
             return;
         }
 
         if (this._btnLabel) {
-            this._btnLabel.textKey = i18n.t("cases/05_scripting/07_asset_loading/AssetLoading.js.1") + this._lastType;
+            this._btnLabel.textKey = i18n.t('cases/05_scripting/07_asset_loading/AssetLoading.js.1') + this._lastType;
         }
 
         this._lastType = this._curType;
 
-        this._btnLabel = event.target.getChildByName("Label").getComponent("cc.Label");
+        this._btnLabel = event.target.getChildByName('Label').getComponent('cc.Label');
 
-        this.loadTips.textKey = this._curType + " Loading....";
+        this.loadTips.textKey = this._curType + ' Loading....';
         this._isLoading = true;
 
         this._load();
     },
 
     _load: function () {
-        var url = this._urls[this._curType];
-        var loadCallBack = this._loadCallBack.bind(this);
+        let url = this._urls[this._curType];
+        let loadCallBack = this._loadCallBack.bind(this);
         switch (this._curType) {
             case 'SpriteFrame':
                 // specify the type to load sub asset from texture's url
@@ -107,7 +107,7 @@ cc.Class({
                 break;
             case 'CORS':
                 cc.loader.load(url, loadCallBack);
-                this.loadTips.textKey = "CORS image should report texImage2D error under WebGL and works ok under Canvas"
+                this.loadTips.textKey = 'CORS image should report texImage2D error under WebGL and works ok under Canvas';
                 break;
             default:
                 cc.loader.load(url, loadCallBack);
@@ -122,14 +122,14 @@ cc.Class({
             return;
         }
         this._curRes = res;
-        if (this._curType === "Audio") {
-            this._btnLabel.textKey = i18n.t("cases/05_scripting/07_asset_loading/AssetLoading.js.2");
+        if (this._curType === 'Audio') {
+            this._btnLabel.textKey = i18n.t('cases/05_scripting/07_asset_loading/AssetLoading.js.2');
         }
         else {
-            this._btnLabel.textKey = i18n.t("cases/05_scripting/07_asset_loading/AssetLoading.js.3");
+            this._btnLabel.textKey = i18n.t('cases/05_scripting/07_asset_loading/AssetLoading.js.3');
         }
         this._btnLabel.textKey += this._curType;
-        this.loadTips.textKey = this._curType + " Loaded Successfully!";
+        this.loadTips.textKey = this._curType + ' Loaded Successfully!';
     },
 
     _onClear: function () {
@@ -140,7 +140,7 @@ cc.Class({
     },
 
     _onShowResClick: function (event) {
-        if (this._curType === "Scene") {
+        if (this._curType === 'Scene') {
             cc.director.runScene(this._curRes.scene);
 
             return;
@@ -149,49 +149,49 @@ cc.Class({
     },
 
     _createNode: function (type, res) {
-        this.loadTips.textKey = "";
-        var node = new cc.Node("New " + type);
+        this.loadTips.textKey = '';
+        let node = new cc.Node('New ' + type);
         node.setPosition(0, 0);
-        var component = null;
+        let component = null;
         switch (this._curType) {
-            case "SpriteFrame":
+            case 'SpriteFrame':
                 component = node.addComponent(cc.Sprite);
                 component.spriteFrame = res;
                 break;
-            case "Texture":
-            case "CORS":
+            case 'Texture':
+            case 'CORS':
                 component = node.addComponent(cc.Sprite);
                 component.spriteFrame = new cc.SpriteFrame(res);
                 break;
-            case "Audio":
+            case 'Audio':
                 component = node.addComponent(cc.AudioSource);
                 component.clip = res;
                 component.play();
                 this._audioSource = component;
-                this.loadTips.textKey = i18n.t("cases/05_scripting/07_asset_loading/AssetLoading.js.4");
+                this.loadTips.textKey = i18n.t('cases/05_scripting/07_asset_loading/AssetLoading.js.4');
                 break;
-            case "Txt":
+            case 'Txt':
                 component = node.addComponent(cc.Label);
                 component.lineHeight = 40;
                 component.string = res;
                 break;
-            case "Font":
+            case 'Font':
                 component = node.addComponent(cc.Label);
                 component.font = res;
                 component.lineHeight = 40;
-                component.string = "This is BitmapFont!";
+                component.string = 'This is BitmapFont!';
                 break;
-            case "Plist":
+            case 'Plist':
                 component = node.addComponent(cc.ParticleSystem);
                 component.file = res;
                 component.resetSystem();
                 break;
-            case "Prefab":
+            case 'Prefab':
                 var prefab = cc.instantiate(res);
                 prefab.parent = node;
                 prefab.setPosition(0, 0);
                 break;
-            case "Animation":
+            case 'Animation':
                 var loadAnim = cc.instantiate(this.loadAnimTestPrefab);
                 loadAnim.parent = node;
                 loadAnim.setPosition(0, 0);
@@ -199,10 +199,10 @@ cc.Class({
                 AanimCtrl.addClip(res);
                 AanimCtrl.play(res.name);
                 break;
-            case "Spine":
+            case 'Spine':
                 component = node.addComponent(sp.Skeleton);
                 component.skeletonData = res;
-                component.animation = "walk";
+                component.animation = 'walk';
                 node.y = -248;
                 break;
         }

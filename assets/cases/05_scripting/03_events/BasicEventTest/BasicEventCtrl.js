@@ -11,13 +11,13 @@ cc.Class({
         tip: cc.Label
     },
 
-    start () {
+    start() {
         TipsManager.init();
     },
 
-    changePosition () {
+    changePosition() {
         this.resetNode();
-        function positionChanged () {
+        function positionChanged() {
             this.tip.string = 'Position_changed successd';
         }
         this.basicNode.on(cc.Node.EventType.POSITION_CHANGED, positionChanged, this);
@@ -26,9 +26,9 @@ cc.Class({
         this.basicNode.off(cc.Node.EventType.POSITION_CHANGED, positionChanged, this);
     },
 
-    changeScale () {
+    changeScale() {
         this.resetNode();
-        function scaleChanged () {
+        function scaleChanged() {
             this.tip.string = 'Scale_changed successd';
         }
         this.basicNode.on(cc.Node.EventType.SCALE_CHANGED, scaleChanged, this);
@@ -37,10 +37,10 @@ cc.Class({
         this.basicNode.off(cc.Node.EventType.POSITION_CHANGED, scaleChanged, this);
     },
 
-    changeSize () {
+    changeSize() {
         this.resetNode();
         // The oldSize only available in editor
-        function sizeChanged (oldSize) {
+        function sizeChanged(oldSize) {
             this.tip.string = 'Size_changed successd';
         }
         this.basicNode.on(cc.Node.EventType.SIZE_CHANGED, sizeChanged, this);
@@ -49,9 +49,9 @@ cc.Class({
         this.basicNode.off(cc.Node.EventType.SIZE_CHANGED, sizeChanged, this);
     },
 
-    changeAnchor () {
+    changeAnchor() {
         this.resetNode();
-        function anchorChanged () {
+        function anchorChanged() {
             this.tip.string = 'Anchor_changed successd';
         }
         this.basicNode.on(cc.Node.EventType.ANCHOR_CHANGED, anchorChanged, this);
@@ -60,9 +60,9 @@ cc.Class({
         this.basicNode.off(cc.Node.EventType.ANCHOR_CHANGED, anchorChanged, this);
     },
 
-    changeColor () {
+    changeColor() {
         this.resetNode();
-        function colorChanged () {
+        function colorChanged() {
             this.tip.string = 'Color_changed successd';
         }
         this.basicNode.on(cc.Node.EventType.COLOR_CHANGED, colorChanged, this);
@@ -70,8 +70,8 @@ cc.Class({
         this.basicNode.off(cc.Node.EventType.COLOR_CHANGED, colorChanged, this);
     },
 
-    addingChild () {
-        function childAdded (child) {
+    addingChild() {
+        function childAdded(child) {
             this.tip.string = `Add_child successd\n zIndex order: ${this.getChildrenContent()}`;
             console.log(child);
         }
@@ -84,24 +84,24 @@ cc.Class({
         this.preNode.off(cc.Node.EventType.CHILD_ADDED, childAdded, this);
     },
 
-    removingChild () {
+    removingChild() {
         this.resetChildNode();
-        function childRemoved (child) {
+        function childRemoved(child) {
             this.tip.string = `Remove_child successd\n zIndex order: ${this.getChildrenContent()}`;
             console.log(child);
         }
         this.preNode.on(cc.Node.EventType.CHILD_REMOVED, childRemoved, this);
         if (this.preNode.children.length !== 3) {
-           TipsManager.createTips(`Only support when there is 3 stars existing`);
-           return;
+            TipsManager.createTips(`Only support when there is 3 stars existing`);
+            return;
         }
         this.preNode.removeChild(this.childNode);
         this.preNode.off(cc.Node.EventType.CHILD_REMOVED, childRemoved, this);
     },
 
-    reorderChild () {
+    reorderChild() {
         this.resetChildNode();
-        function childReordered (parent) {
+        function childReordered(parent) {
             this.tip.string = `Reorder_child successd\n zIndex order: ${this.getChildrenContent()}`;
             console.log(parent);
         }
@@ -111,9 +111,9 @@ cc.Class({
         this.preNode.off(cc.Node.EventType.CHILD_REORDER, childReordered, this);
     },
 
-    changeGroup () {
+    changeGroup() {
         this.resetNode();
-        function groupChanged (node) {
+        function groupChanged(node) {
             this.tip.string = `Group_changed successd: ${this.basicNode.group}`;
             console.log(node);
         }
@@ -122,10 +122,10 @@ cc.Class({
         this.basicNode.off(cc.Node.EventType.GROUP_CHANGED, groupChanged, this);
     },
 
-    resetNode () {
+    resetNode() {
         this.basicNode.x = -200;
         this.basicNode.y = 75;
-        this.basicNode.scaleX = 1
+        this.basicNode.scaleX = 1;
         this.basicNode.scaleY = 1;
         this.basicNode.width = 256;
         this.basicNode.height = 256;
@@ -135,7 +135,7 @@ cc.Class({
         this.basicNode.group = 'Default';
     },
 
-    resetChildNode () {
+    resetChildNode() {
         let children = this.preNode.children;
         for (let i = 0; i < children.length; i++) {
             switch (children[i].name) {
@@ -153,7 +153,7 @@ cc.Class({
         this.preNode.sortAllChildren();
     },
 
-    getChildrenContent () {
+    getChildrenContent() {
         let str = '';
         let children = this.preNode.children.sort((a, b) => {
             return a.zIndex - b.zIndex;

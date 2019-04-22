@@ -2,7 +2,7 @@ const Polyglot = require('polyglot');
 
 let data = cc.sys.language === 'zh' ? require('zh') : require('en');
 // let polyglot = null;
-let polyglot = new Polyglot({phrases: data, allowMissing: true});
+let polyglot = new Polyglot({ phrases: data, allowMissing: true });
 
 
 module.exports = {
@@ -12,7 +12,7 @@ module.exports = {
      * @method init
      * @param language - the language specific data file name, such as 'zh' to load 'zh.js'
      */
-    init (language) {
+    init(language) {
         lang = language;
         data = language === 'zh' ? require('zh') : require('en');
         polyglot.replace(data);
@@ -31,7 +31,7 @@ module.exports = {
      * // you can use the following to interpolate the text
      * var greetingText = i18n.t('hello_name', {name: 'nantas'}); // Hello, nantas
      */
-    t (key, opt) {
+    t(key, opt) {
         return polyglot.t(key, opt);
     }
 };

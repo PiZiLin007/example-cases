@@ -1,5 +1,5 @@
 const MAX_VALUE = 5;
-const TIPS_STR = 'repeat count: '+ MAX_VALUE +' / value';
+const TIPS_STR = 'repeat count: ' + MAX_VALUE + ' / value';
 
 cc.Class({
     extends: cc.Component,
@@ -9,7 +9,7 @@ cc.Class({
     },
 
     // use this for initialization
-    onLoad () {
+    onLoad() {
         this.setTips(0);
         let count = 0;
         let action1 = cc.delayTime(1);
@@ -20,7 +20,7 @@ cc.Class({
         this.node.runAction(cc.repeat(cc.sequence(action1, action2), 5));
     },
 
-    setTips (count) {
+    setTips(count) {
         this.tips.string = TIPS_STR.replace(/value/, count);
     }
 

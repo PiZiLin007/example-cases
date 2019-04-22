@@ -1,11 +1,11 @@
 
-var _monsterInfo = {
-    name: "Slime",
+let _monsterInfo = {
+    name: 'Slime',
     hp: 100,
     lv: 1,
     atk: 10,
     defense: 5,
-    imageUrl: "test_assets/PurpleMonster"
+    imageUrl: 'test_assets/PurpleMonster'
 };
 
 module.exports = {

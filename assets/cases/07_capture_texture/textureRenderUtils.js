@@ -7,7 +7,7 @@ cc.Class({
         _canvas: null
     },
 
-    init () {
+    init() {
         this.label.string = '';
         let texture = new cc.RenderTexture();
         let gl = cc.game._renderContext;
@@ -16,15 +16,15 @@ cc.Class({
         this.texture = texture;
     },
     // create the img element
-    initImage () {
+    initImage() {
         // return the type and dataUrl
-        var dataURL = this._canvas.toDataURL("image/png");
-        var img = document.createElement("img");
+        let dataURL = this._canvas.toDataURL('image/png');
+        let img = document.createElement('img');
         img.src = dataURL;
         return img;
     },
     // create the canvas and context, filpY the image Data
-    createSprite () {
+    createSprite() {
         let width = this.texture.width;
         let height = this.texture.height;
         if (!this._canvas) {
@@ -40,7 +40,7 @@ cc.Class({
         this.camera.render();
         let data = this.texture.readPixels();
         // write the render data
-        let rowBytes = width * 4; 
+        let rowBytes = width * 4;
         for (let row = 0; row < height; row++) {
             let srow = height - 1 - row;
             let imageData = ctx.createImageData(width, 1);
@@ -53,9 +53,9 @@ cc.Class({
         }
         return this._canvas;
     },
-    
+
     // show on the canvas
-    showSprite (img) {
+    showSprite(img) {
         let texture = new cc.Texture2D();
         texture.initWithElement(img);
 
@@ -82,10 +82,10 @@ cc.Class({
         this.captureAction(node, width, height);
     },
     // sprite action
-    captureAction (capture, width, height) {
-        let scaleAction = cc.scaleTo(1,0.3);
-        let targetPos = cc.v2(width - width / 6,  height / 4);
-        let moveAction = cc.moveTo(1, targetPos); 
+    captureAction(capture, width, height) {
+        let scaleAction = cc.scaleTo(1, 0.3);
+        let targetPos = cc.v2(width - width / 6, height / 4);
+        let moveAction = cc.moveTo(1, targetPos);
         let spawn = cc.spawn(scaleAction, moveAction);
         capture.runAction(spawn);
         let blinkAction = cc.blink(0.1, 1);
@@ -93,7 +93,7 @@ cc.Class({
         this.node.runAction(blinkAction);
     },
 
-    clearCanvas () {
+    clearCanvas() {
         let ctx = this._canvas.getContext('2d');
         ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
     }

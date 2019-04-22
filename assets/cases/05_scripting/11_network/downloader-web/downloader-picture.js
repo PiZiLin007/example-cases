@@ -19,16 +19,16 @@ cc.Class({
         _picUrl: 'http://tools.itharbors.com/christmas/res/tree.png'
     },
 
-    onLoad () {
+    onLoad() {
         this.remindLabel.textKey = '';
     },
 
-    startLoad () {
+    startLoad() {
         // set url
         this._picUrl = this.inputUrlBox.string;
         // download pic
         if (this._picUrl) {
-            cc.loader.load({url: this._picUrl, type: 'png'}, this.onProgress.bind(this), this.picLoadComplete.bind(this));
+            cc.loader.load({ url: this._picUrl, type: 'png' }, this.onProgress.bind(this), this.picLoadComplete.bind(this));
             this.remindLabel.textKey = i18n.t('cases/05_scripting/11_network/download-web.fire.2');
         }
         else {
@@ -36,10 +36,10 @@ cc.Class({
         }
     },
 
-    picLoadComplete (err, res) {
+    picLoadComplete(err, res) {
         if (err || !res) {
             console.log(err);
-            this.remindLabel.textKey =  i18n.t('cases/05_scripting/11_network/download-web.fire.5.2');
+            this.remindLabel.textKey = i18n.t('cases/05_scripting/11_network/download-web.fire.5.2');
             return;
         }
 
@@ -50,8 +50,8 @@ cc.Class({
         this.picNode.node.active = true;
     },
 
-    onProgress (completedCount, totalCount) {
-        this.remindLabel.textKey = `${i18n.t('cases/05_scripting/11_network/download-web.fire.3')} ${(completedCount/totalCount) * 100}`;
+    onProgress(completedCount, totalCount) {
+        this.remindLabel.textKey = `${i18n.t('cases/05_scripting/11_network/download-web.fire.3')} ${(completedCount / totalCount) * 100}`;
     },
 
 });

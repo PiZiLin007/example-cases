@@ -24,7 +24,7 @@ cc.Class({
             this.curGold++;
             this.gold_label.string += this.curGold;
             if (this.gold_label.string.length > 10) {
-                this.gold_label.string = i18n.t("cases/02_ui/02_label/GoldBeatingAnime.js.1");
+                this.gold_label.string = i18n.t('cases/02_ui/02_label/GoldBeatingAnime.js.1');
                 this.curGold = 0;
             }
         }

@@ -3,12 +3,12 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        var animation = this.getComponent(cc.Animation);
-        
-        cc.loader.loadRes("test_assets/atlas", cc.SpriteAtlas, (err, atlas) => {
-            var spriteFrames = atlas.getSpriteFrames();
-            
-            var clip = cc.AnimationClip.createWithSpriteFrames(spriteFrames, 10);
+        let animation = this.getComponent(cc.Animation);
+
+        cc.loader.loadRes('test_assets/atlas', cc.SpriteAtlas, (err, atlas) => {
+            let spriteFrames = atlas.getSpriteFrames();
+
+            let clip = cc.AnimationClip.createWithSpriteFrames(spriteFrames, 10);
             clip.name = 'run';
             clip.wrapMode = cc.WrapMode.Loop;
 

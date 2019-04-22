@@ -10,7 +10,7 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        var self = this;
+        let self = this;
         this.inervalId = setInterval(function () {
             self.toggleNodesVisibility();
         }, 1000);
@@ -22,7 +22,7 @@ cc.Class({
 
     toggleNodesVisibility: function() {
         console.log('toggle visibility');
-        for (var i = 0; i < this.nodeList.length; ++i) {
+        for (let i = 0; i < this.nodeList.length; ++i) {
             this.nodeList[i].active = !this.nodeList[i].active;
         }
     }

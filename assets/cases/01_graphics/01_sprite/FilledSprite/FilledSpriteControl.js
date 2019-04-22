@@ -36,13 +36,13 @@ cc.Class({
     },
 
     _updataFillStart: function (sprite, dt) {
-        var fillStart = sprite.fillStart;
+        let fillStart = sprite.fillStart;
         fillStart = fillStart > 0 ? fillStart -= (dt * this.speed) : 1;
         sprite.fillStart = fillStart;
     },
 
     _updateFillRange: function (sprite, range, dt) {
-        var fillRange = sprite.fillRange;
+        let fillRange = sprite.fillRange;
         fillRange = fillRange < range ? fillRange += (dt * this.speed) : 0;
         sprite.fillRange = fillRange;
     }

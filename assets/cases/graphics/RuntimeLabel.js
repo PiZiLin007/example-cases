@@ -5,7 +5,7 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        var isRuntime = typeof runtime !== 'undefined';
+        let isRuntime = typeof runtime !== 'undefined';
         if (!isRuntime) {
             this.node.active = false;
         }

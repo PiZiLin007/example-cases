@@ -21,8 +21,8 @@ cc.Class({
         this.title.string = 'normal';
 
         this.node.on(cc.Node.EventType.TOUCH_START, function (touch, event) {
-            var touchLoc = touch.getLocation();
-            
+            let touchLoc = touch.getLocation();
+
             if (cc.Intersection.pointInPolygon(touchLoc, this.collider.world.points)) {
                 this.title.string = 'Hit';
             }

@@ -5,7 +5,7 @@ cc.Class({
         tips: require('LabelLocalized')
     },
 
-    onLoadSubpackageCallback (err) {
+    onLoadSubpackageCallback(err) {
         if (err) {
             console.error(err);
             this.tips.textKey = 'cases/subpackage.failed';
@@ -14,15 +14,15 @@ cc.Class({
         this.tips.textKey = 'cases/subpackage.complete';
     },
 
-    loadSubpackage1 () {
+    loadSubpackage1() {
         cc.loader.downloader.loadSubpackage('First', this.onLoadSubpackageCallback.bind(this));
     },
 
-    loadSubpackage2 () {
+    loadSubpackage2() {
         cc.loader.downloader.loadSubpackage('Second', this.onLoadSubpackageCallback.bind(this));
     },
 
-    goSubpackage1 () {
+    goSubpackage1() {
         cc.director.loadScene('sub-first', (err) => {
             if (err) {
                 this.tips.textKey = 'cases/goSubpackage1.failed';
@@ -30,7 +30,7 @@ cc.Class({
         });
     },
 
-    goSubpackage2 () {
+    goSubpackage2() {
         cc.director.loadScene('sub-second', (err) => {
             if (err) {
                 this.tips.textKey = 'cases/goSubpackage2.failed';

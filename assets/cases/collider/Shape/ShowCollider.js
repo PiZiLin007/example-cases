@@ -5,20 +5,20 @@ cc.Class({
     onLoad: function () {
 
     },
-    
+
     onBtnClick: function (event) {
-        var target = event.target;
-        var shapeClassName = `cc.${target.name}Collider`;
-        var nodePath = 'Canvas/root/' + target.parent.name;
-        var collider = cc.find(nodePath).getComponent(shapeClassName);
+        let target = event.target;
+        let shapeClassName = `cc.${target.name}Collider`;
+        let nodePath = 'Canvas/root/' + target.parent.name;
+        let collider = cc.find(nodePath).getComponent(shapeClassName);
         collider.enabled = !collider.enabled;
-        
-        var label = target.getChildByName('Label').getComponent(cc.Label);
+
+        let label = target.getChildByName('Label').getComponent(cc.Label);
         if (collider.enabled) {
             label.string = label.string.replace('Show', 'Hide');
         }
         else {
-            label.string = label.string.replace('Hide', 'Show');   
+            label.string = label.string.replace('Hide', 'Show');
         }
     }
 });

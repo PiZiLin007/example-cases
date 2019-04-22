@@ -22,7 +22,7 @@ cc.game.once(cc.game.EVENT_ENGINE_INITED, function () {
 
     _prevMat = math.mat4.create();
     _currMat = math.mat4.create();
-})
+});
 
 let ColorRect = cc.Class({
     extends: cc.RenderComponent,
@@ -34,18 +34,20 @@ let ColorRect = cc.Class({
         trColor: cc.Color,
     },
 
-    _updateVertexData (matrix) {
-        let verts = this._vData,
-            uintV = this._uintVData;
-        let w = this.node.width,
-            h = this.node.height,
-            appx = w * this.node.anchorX,
-            appy = h * this.node.anchorY;
-        let a = matrix.m00, b = matrix.m01, c = matrix.m04, d = matrix.m05,
-            tx = matrix.m12, ty = matrix.m13;
+    _updateVertexData(matrix) {
+        let verts = this._vData;
+        let uintV = this._uintVData;
+        let w = this.node.width;
+        let h = this.node.height;
+        let appx = w * this.node.anchorX;
+        let appy = h * this.node.anchorY;
+        let a = matrix.m00; let b = matrix.m01; let c = matrix.m04; let d = matrix.m05;
+        let tx = matrix.m12; let
+            ty = matrix.m13;
 
-        let x, y, i = 0;
-        
+        let x; let y; let
+            i = 0;
+
         // bl
         x = -appx;
         y = -appy;
@@ -75,7 +77,7 @@ let ColorRect = cc.Class({
         this._vb.update(0, verts);
     },
 
-    _createIA () {
+    _createIA() {
         let device = cc.renderer.device;
         // Vertex format defines vertex buffer layout: x, y, color
         this._vertexFormat = new gfx.VertexFormat([
@@ -116,7 +118,7 @@ let ColorRect = cc.Class({
         this._ia._count = this._iData.length;
     },
 
-    onEnable () {
+    onEnable() {
         this._super();
 
         this.node._renderFlag &= ~cc.RenderFlow.FLAG_RENDER;
@@ -124,7 +126,7 @@ let ColorRect = cc.Class({
     },
 
     // LIFE-CYCLE CALLBACKS:
-    onLoad () {
+    onLoad() {
         this._material = new renderEngine.SpriteMaterial();
         this._material.useTexture = false;
         this._material.useColor = false;
@@ -132,14 +134,14 @@ let ColorRect = cc.Class({
         this._createIA();
     },
 
-    update () {
+    update() {
         this.node.getWorldMatrix(_currMat);
-        if (_currMat.m00 !== _prevMat.m00 || 
+        if (_currMat.m00 !== _prevMat.m00 ||
             _currMat.m01 !== _prevMat.m01 ||
             _currMat.m04 !== _prevMat.m04 ||
             _currMat.m05 !== _prevMat.m05 ||
             _currMat.m12 !== _prevMat.m12 ||
-            _currMat.m13 !== _prevMat.m13) 
+            _currMat.m13 !== _prevMat.m13)
         {
             this._updateVertexData(_currMat);
         }

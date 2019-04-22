@@ -5,7 +5,7 @@ cc.Class({
         map_root: cc.Node
     },
 
-    onLoadTileMap (url) {
+    onLoadTileMap(url) {
         cc.loader.loadRes(url, cc.TiledMapAsset, (err, tmxAsset) => {
             if (err) {
                 cc.error(err);
@@ -15,21 +15,21 @@ cc.Class({
         });
     },
 
-    onCreateTileMap (tmxAsset) {
+    onCreateTileMap(tmxAsset) {
         this.map_root.destroyAllChildren();
-        var node = new cc.Node();
+        let node = new cc.Node();
         this.map_root.addChild(node);
-        var tileMap = node.addComponent(cc.TiledMap);
+        let tileMap = node.addComponent(cc.TiledMap);
         tileMap.tmxAsset = tmxAsset;
     },
 
-    onBtnCreateTileMap () {
-        var url = 'tilemap/tile_iso_offset';
+    onBtnCreateTileMap() {
+        let url = 'tilemap/tile_iso_offset';
         this.onLoadTileMap(url);
     },
 
-    onBtnCreateTileMapWithTsx () {
-        var url = 'tilemap/tile_iso_offset_with_tsx';
+    onBtnCreateTileMapWithTsx() {
+        let url = 'tilemap/tile_iso_offset_with_tsx';
         this.onLoadTileMap(url);
     },
 });

@@ -11,11 +11,11 @@ cc.Class({
 
     onClickedButton_1: function() {
         console.log('button_1 clicked!');
-        this.display.textKey = i18n.t("cases/02_ui/03_button/ButtonInScroll.js.1");
+        this.display.textKey = i18n.t('cases/02_ui/03_button/ButtonInScroll.js.1');
     },
 
     onClickedButton_2: function() {
         console.log('button_2 clicked!');
-        this.display.textKey = i18n.t("cases/02_ui/03_button/ButtonInScroll.js.2");
+        this.display.textKey = i18n.t('cases/02_ui/03_button/ButtonInScroll.js.2');
     }
 });

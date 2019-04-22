@@ -6,19 +6,19 @@ cc.Class({
         _height: 0
     },
 
-    start () {
+    start() {
         this.init();
         // create the capture
         this.scheduleOnce(() => {
             let picData = this.initImage();
             this.showSprite(picData);
-            this.label.string = 'Showing the capture'
+            this.label.string = 'Showing the capture';
             this.saveFile(picData);
         }, 1);
     },
-    
+
     // override
-    initImage () { 
+    initImage() {
         let data = this.texture.readPixels();
         this._width = this.texture.width;
         this._height = this.texture.height;
@@ -27,7 +27,7 @@ cc.Class({
     },
 
     // override
-    initImage () {
+    initImage() {
         let data = this.texture.readPixels();
         this._width = this.texture.width;
         this._height = this.texture.height;
@@ -36,7 +36,7 @@ cc.Class({
     },
 
     // override init with Data
-    showSprite (picData) {
+    showSprite(picData) {
         let texture = new cc.Texture2D();
         texture.initWithData(picData, 32, this._width, this._height);
 
@@ -63,22 +63,22 @@ cc.Class({
         this.captureAction(node, width, height);
     },
 
-    saveFile (picData) {
+    saveFile(picData) {
         if (CC_JSB) {
             let filePath = jsb.fileUtils.getWritablePath() + 'render_to_sprite_image.png';
 
-            let success = jsb.saveImageData(picData, this._width, this._height, filePath)
+            let success = jsb.saveImageData(picData, this._width, this._height, filePath);
             if (success) {
-                cc.log("save image data success, file: " + filePath);
+                cc.log('save image data success, file: ' + filePath);
             }
             else {
-                cc.error("save image data failed!");
+                cc.error('save image data failed!');
             }
         }
     },
 
     // This is a temporary solution
-    filpYImage (data, width, height) {
+    filpYImage(data, width, height) {
         // create the data array
         let picData = new Uint8Array(width * height * 4);
         let rowBytes = width * 4;

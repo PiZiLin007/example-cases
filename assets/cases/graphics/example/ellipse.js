@@ -3,14 +3,14 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        var g = this.getComponent(cc.Graphics);
+        let g = this.getComponent(cc.Graphics);
 
         g.lineWidth = 10;
         g.fillColor.fromHEX('#ff0000');
 
-        g.circle(150,0, 100);
-        
-        g.ellipse(-150,0, 100,70);
+        g.circle(150, 0, 100);
+
+        g.ellipse(-150, 0, 100, 70);
 
         g.stroke();
         g.fill();

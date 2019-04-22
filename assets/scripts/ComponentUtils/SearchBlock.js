@@ -4,20 +4,20 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        editBox:cc.EditBox,
+        editBox: cc.EditBox,
         _itemList: [],
         _isShow: false
     },
 
-    init (menu) {
+    init(menu) {
         this.menu = menu;
     },
 
-    setItemList (list) {
+    setItemList(list) {
         this._itemList = list;
     },
     // searchBlock enter the special scene
-    loadExample () {
+    loadExample() {
         let sceneName = this.editBox.string;
         let url = this.findItemUrl(sceneName);
         if (!url) {
@@ -26,13 +26,13 @@ cc.Class({
         }
 
         if (TipsManager.hasSupport(sceneName)) {
-            this.showSearchBlock ();
+            this.showSearchBlock();
             this.editBox.string = '';
             this.menu.loadScene(url);
         }
     },
 
-    findItemUrl (sceneName) {
+    findItemUrl(sceneName) {
         for (let i = 0; i < this._itemList.length; i++) {
             let item = this._itemList[i];
             if (item.name === sceneName) {
@@ -41,7 +41,7 @@ cc.Class({
         }
     },
 
-    showSearchBlock () {
+    showSearchBlock() {
         this._isShow = !this._isShow;
         let action = null;
         if (this._isShow) {

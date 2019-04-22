@@ -18,7 +18,7 @@ cc.Class({
     },
 
     onRegisteredEvent: function () {
-        for (var i = 0; i < this.nodes.length; ++i) {
+        for (let i = 0; i < this.nodes.length; ++i) {
             this.nodes[i].on(cc.Node.EventType.TOUCH_END, this.onPlayAnimation.bind(this));
         }
     },
@@ -26,20 +26,20 @@ cc.Class({
     onPlayAnimation: function (event) {
         this.target.stop();
         switch (event.target._name) {
-            case "Linear":
-                this.target.play("linear");
+            case 'Linear':
+                this.target.play('linear');
                 break;
-            case "CaseIn_Expo":
-                this.target.play("caseIn-expo");
+            case 'CaseIn_Expo':
+                this.target.play('caseIn-expo');
                 break;
-            case "CaseOut_Expo":
-                this.target.play("caseOut-expo");
+            case 'CaseOut_Expo':
+                this.target.play('caseOut-expo');
                 break;
-            case "CaseInOut_Expo":
-                this.target.play("caseInOut-expo");
+            case 'CaseInOut_Expo':
+                this.target.play('caseInOut-expo');
                 break;
-            case "Back_Forward":
-                this.target.play("back-forward");
+            case 'Back_Forward':
+                this.target.play('back-forward');
                 break;
         }
     }

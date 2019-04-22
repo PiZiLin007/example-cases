@@ -1,4 +1,4 @@
-var Helpers = require('Helpers');
+let Helpers = require('Helpers');
 
 cc.Class({
     extends: cc.Component,
@@ -12,8 +12,8 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        var randomIdx = Helpers.getRandomInt(0, this.spriteList.length);
-        var sprite = this.getComponent(cc.Sprite);
+        let randomIdx = Helpers.getRandomInt(0, this.spriteList.length);
+        let sprite = this.getComponent(cc.Sprite);
         sprite.spriteFrame = this.spriteList[randomIdx];
     }
 

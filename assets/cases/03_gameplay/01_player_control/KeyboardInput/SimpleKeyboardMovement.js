@@ -9,21 +9,21 @@ cc.Class({
     },
 
     // use this for initialization
-    onLoad () {
+    onLoad() {
         // set initial move direction
         this.turnRight();
 
-        //add keyboard input listener to call turnLeft and turnRight
+        // add keyboard input listener to call turnLeft and turnRight
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
     },
 
-    onDestroy () {
+    onDestroy() {
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
     },
 
-    onKeyDown (event) {
-        var macro = cc.macro;
-        switch(event.keyCode) {
+    onKeyDown(event) {
+        let macro = cc.macro;
+        switch (event.keyCode) {
             case macro.KEY.a:
             case macro.KEY.left:
                 console.log('turn left');
@@ -38,16 +38,16 @@ cc.Class({
     },
 
     // called every frame
-    update (dt) {
+    update(dt) {
         this.sheep.x += this.speed * dt;
     },
 
-    turnLeft () {
+    turnLeft() {
         this.speed = -100;
         this.sheep.scaleX = 1;
     },
 
-    turnRight () {
+    turnRight() {
         this.speed = 100;
         this.sheep.scaleX = -1;
     }
